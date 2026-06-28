@@ -8,7 +8,7 @@ export type ProductCategoria = 'fibras' | 'mops' | 'accesorios' | 'repuestos'
 // and navbar column eyebrows.
 export const CATEGORY_COLORS: Record<ProductCategoria, string> = {
   fibras:     '#1A1A1A', // grafito editorial
-  mops:       '#0076FF', // azul MagiClean
+  mops:       '#0076FF', // azul de marca
   accesorios: '#374151', // carbón
   repuestos:  '#9CA3AF', // gris claro
 }

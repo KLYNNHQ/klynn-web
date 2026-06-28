@@ -164,7 +164,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ success: true })
     }
 
-    // 2️⃣  Notificación interna al equipo MagiClean
+    // 2️⃣  Notificación interna al equipo comercial
     const notifyTo = process.env.NOTIFY_EMAIL || 'hola@magiclean.mx'
     const canalLabel = CANAL_LABELS[body.canal] || body.canal
 
