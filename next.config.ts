@@ -2,6 +2,10 @@ import { withSentryConfig } from '@sentry/nextjs';
 import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
+  // El indicador de desarrollo se superpone a la esquina inferior izquierda,
+  // justo sobre la banda de especificación del hero, y contamina las capturas
+  // de revisión de diseño.
+  devIndicators: false,
   images: {
     formats: ['image/avif', 'image/webp'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],

@@ -1,41 +1,64 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { Menu, X } from 'lucide-react'
 import Wordmark from './Wordmark'
 
 /**
- * Navbar KLYNN — barra grafito con wordmark reversed, según la lámina 11
- * (Landing Page Mockups) del Master Design Manual v1.0.
+ * Navbar KLYNN.
  *
- * Fase 1 no tiene carrito: el mockup lo muestra porque contempla el eCommerce
- * de Fase 2. Su lugar lo ocupa el CTA comercial.
+ * Sobre el fold es transparente: la marca flota, no se enmarca. Una franja
+ * opaca cruzando el hero invierte la jerarquía — lo primero que ve el ojo
+ * pasa a ser lo menos importante de la página.
+ *
+ * Al abandonar el fold adopta fondo grafito, porque a partir de ahí compite
+ * con contenido y necesita separarse.
+ *
+ * El CTA comercial no vive aquí: en el primer fold una petición de
+ * presupuesto contradice el registro de marca. Aparece más abajo.
+ *
+ * Idioma: la capa de marca habla inglés; la operación, español.
  */
 
 const LINKS = [
-  { href: '/productos',  label: 'Productos' },
-  { href: '/#categorias', label: 'Categorías' },
-  { href: '/#nosotros',   label: 'Nosotros' },
-  { href: '/#contacto',   label: 'Contacto' },
+  { href: '/productos', label: 'Products' },
+  { href: '/#categorias', label: 'Categories' },
+  { href: '/#filosofia', label: 'About' },
 ]
 
 export default function Navbar() {
+  const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
 
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  const solid = scrolled || open
+
   return (
-    <header className="fixed inset-x-0 top-0 z-50 bg-[var(--color-k-graphite)] text-[var(--color-k-white)]">
-      <nav className="mx-auto flex h-[68px] max-w-[1440px] items-center justify-between px-6 lg:px-12">
-        <Link href="/" aria-label="KLYNN — inicio" className="flex items-center">
-          <Wordmark height={20} />
+    <header
+      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-500 ${
+        solid
+          ? 'bg-[var(--color-k-graphite)] text-[var(--color-k-white)]'
+          : 'bg-transparent text-[var(--color-k-graphite)]'
+      }`}
+    >
+      <nav className="mx-auto flex h-[84px] max-w-[1440px] items-center justify-between px-8 lg:px-16">
+        <Link href="/" aria-label="KLYNN" className="flex items-center">
+          <Wordmark height={26} />
         </Link>
 
-        <ul className="hidden items-center gap-10 lg:flex">
+        <ul className="hidden items-center gap-12 lg:flex">
           {LINKS.map(l => (
             <li key={l.href}>
               <Link
                 href={l.href}
-                className="k-caption text-[0.75rem] uppercase tracking-[0.14em] text-[var(--color-k-gray-light)] transition-colors hover:text-[var(--color-k-white)]"
+                className="k-caption text-[0.6875rem] uppercase tracking-[0.2em] opacity-60 transition-opacity duration-300 hover:opacity-100"
               >
                 {l.label}
               </Link>
@@ -43,49 +66,31 @@ export default function Navbar() {
           ))}
         </ul>
 
-        <div className="flex items-center gap-4">
-          <Link
-            href="/#contacto"
-            className="k-button hidden border border-[var(--color-k-gray-mid)] px-6 py-3 text-[0.75rem] transition-colors hover:border-[var(--color-k-white)] hover:bg-[var(--color-k-white)] hover:text-[var(--color-k-graphite)] lg:inline-block"
-          >
-            Cotizar
-          </Link>
-
-          <button
-            type="button"
-            onClick={() => setOpen(v => !v)}
-            aria-label={open ? 'Cerrar menú' : 'Abrir menú'}
-            aria-expanded={open}
-            className="lg:hidden"
-          >
-            {open ? <X size={22} /> : <Menu size={22} />}
-          </button>
-        </div>
+        <button
+          type="button"
+          onClick={() => setOpen(v => !v)}
+          aria-label={open ? 'Close menu' : 'Open menu'}
+          aria-expanded={open}
+          className="lg:hidden"
+        >
+          {open ? <X size={20} /> : <Menu size={20} />}
+        </button>
       </nav>
 
       {open && (
-        <div className="border-t border-[color-mix(in_srgb,var(--color-k-gray-mid)_35%,transparent)] lg:hidden">
-          <ul className="mx-auto max-w-[1440px] px-6 py-4">
+        <div className="lg:hidden">
+          <ul className="mx-auto max-w-[1440px] px-8 pb-6">
             {LINKS.map(l => (
               <li key={l.href}>
                 <Link
                   href={l.href}
                   onClick={() => setOpen(false)}
-                  className="k-body block py-3 uppercase tracking-[0.12em] text-[var(--color-k-gray-light)]"
+                  className="k-caption block py-3 text-[0.75rem] uppercase tracking-[0.2em] opacity-70"
                 >
                   {l.label}
                 </Link>
               </li>
             ))}
-            <li className="pt-3">
-              <Link
-                href="/#contacto"
-                onClick={() => setOpen(false)}
-                className="k-button block bg-[var(--color-k-white)] px-6 py-4 text-center text-[var(--color-k-graphite)]"
-              >
-                Cotizar
-              </Link>
-            </li>
           </ul>
         </div>
       )}
