@@ -2,7 +2,6 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import type { HeroSection } from '@/lib/wordpress'
 import { CANALES } from '@/lib/products'
 import { MARKETPLACES, withUTM } from '@/lib/marketplaces'
 import { track, AnalyticsEvents } from '@/lib/analytics'
@@ -17,23 +16,23 @@ const HERO_CTAS = {
   catalogo:     '/#contacto',
 }
 
-// Fallback values — used when WordPress is unreachable or fields are empty
-const FALLBACK: HeroSection = {
+interface HeroContent {
+  eyebrow: string
+  headline: string
+  subheadline: string
+  heroMicrotext: string
+}
+
+// Contenido del Hero. Fuente única desde que se retiró la integración WordPress.
+const FALLBACK: HeroContent = {
   eyebrow:       'Proveedor B2B · Canal Profesional México',
   headline:      'Limpieza profesional, repensada.',
   subheadline:   'Solución integral con NeoShield™ en cada producto. Más duración. Cero contaminación cruzada. Para HORECA, retail e institucional.',
   heroMicrotext: 'México · LATAM',
 }
 
-interface HeroProps {
-  data?: HeroSection | null
-}
-
-export default function Hero({ data }: HeroProps) {
-  const eyebrow       = data?.eyebrow       || FALLBACK.eyebrow
-  const headline      = data?.headline      || FALLBACK.headline
-  const subheadline   = data?.subheadline   || FALLBACK.subheadline
-  const heroMicrotext = data?.heroMicrotext || FALLBACK.heroMicrotext
+export default function Hero() {
+  const { eyebrow, headline, subheadline, heroMicrotext } = FALLBACK
 
   return (
     <section className="relative min-h-screen flex flex-col pt-[68px]">

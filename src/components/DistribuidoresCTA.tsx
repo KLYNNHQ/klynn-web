@@ -3,7 +3,6 @@
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { ArrowRight, Download } from 'lucide-react'
-import type { DistribuidoresSection } from '@/lib/wordpress'
 import { CATALOG_PDFS } from '@/lib/catalog-assets'
 
 // Info logística (tiempos, MOQ, cobertura) vive en <Logistica />. Esta sección
@@ -17,8 +16,18 @@ const BENEFITS = [
   { label: 'Marca editorial',       detail: 'Premium en canal B2B' },
 ]
 
-// Fallback values — used when WordPress is unreachable or field group not yet published
-const FALLBACK: DistribuidoresSection = {
+interface DistribuidoresContent {
+  eyebrow: string
+  headline: string
+  body: string
+  ctaLabel: string
+  ctaUrl: string
+  note: string
+  zones: string
+}
+
+// Contenido de la sección. Fuente única desde que se retiró la integración WordPress.
+const FALLBACK: DistribuidoresContent = {
   eyebrow:  'Únete a la red',
   headline: 'Conviértete en distribuidor MagiClean',
   body:     'Márgenes competitivos frente a multinacionales. Capacitación técnica sobre NeoShield™. Soporte de ventas dedicado. Una marca B2B con recorrido en marketplaces y visión editorial para el canal.',
@@ -28,17 +37,8 @@ const FALLBACK: DistribuidoresSection = {
   zones:    'CDMX, Guadalajara, Monterrey, Puebla, Tijuana, Querétaro',
 }
 
-interface DistribuidoresCTAProps {
-  data?: DistribuidoresSection | null
-}
-
-export default function DistribuidoresCTA({ data }: DistribuidoresCTAProps) {
-  const eyebrow  = data?.eyebrow  || FALLBACK.eyebrow
-  const headline = data?.headline || FALLBACK.headline
-  const body     = data?.body     || FALLBACK.body
-  const ctaLabel = data?.ctaLabel || FALLBACK.ctaLabel
-  const ctaUrl   = data?.ctaUrl   || FALLBACK.ctaUrl
-  const note     = data?.note     || FALLBACK.note
+export default function DistribuidoresCTA() {
+  const { eyebrow, headline, body, ctaLabel, ctaUrl, note } = FALLBACK
 
   return (
     <section id="distribuidores" className="relative overflow-hidden bg-[var(--color-primary-dark)] py-20">

@@ -1182,7 +1182,7 @@ function FichaGenerica({
       </section>
 
       <RelatedProducts currentSku={product.sku} category={product.categoria} products={products} />
-      <DistribuidoresCTA data={null} />
+      <DistribuidoresCTA />
     </main>
   )
 }
