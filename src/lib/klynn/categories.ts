@@ -39,21 +39,34 @@ export interface Category {
   accentApproved: boolean
   /** Tiene catálogo vivo hoy. */
   activa: boolean
-  /** Aparece en navegación y grillas. */
+  /**
+   * Aparece en la superficie pública de esta fase.
+   *
+   * Registrada ≠ publicada. Una marca que enseña siete casillas y seis dicen
+   * "en desarrollo" está anunciando que está vacía. Se publican solo las
+   * categorías con identidad resuelta; el resto vive en la arquitectura y
+   * entra cuando tenga con qué sostenerse.
+   */
   visible: boolean
 }
 
 export const CATEGORIES: Category[] = [
+  // Publicadas — identidad cromática aprobada. CLEAN encabeza por ser la
+  // única con catálogo vivo; el orden es intencional, no alfabético.
+  { key: 'clean',    nombre: 'KLYNN CLEAN',    descriptor: 'Cuidado de superficies',    accentApproved: true,  activa: true,  visible: true },
   { key: 'home',     nombre: 'KLYNN HOME',     descriptor: 'Objetos para la casa',      accentApproved: true,  activa: false, visible: true },
   { key: 'kitchen',  nombre: 'KLYNN KITCHEN',  descriptor: 'Cocina y preparación',      accentApproved: true,  activa: false, visible: true },
   { key: 'tech',     nombre: 'KLYNN TECH',     descriptor: 'Energía y conectividad',    accentApproved: true,  activa: false, visible: true },
-  { key: 'clean',    nombre: 'KLYNN CLEAN',    descriptor: 'Cuidado de superficies',    accentApproved: true,  activa: true,  visible: true },
-  { key: 'storage',  nombre: 'KLYNN STORAGE',  descriptor: 'Orden y almacenamiento',    accentApproved: false, activa: false, visible: true },
-  { key: 'pet',      nombre: 'KLYNN PET',      descriptor: 'Vida con animales',         accentApproved: false, activa: false, visible: true },
-  { key: 'wellness', nombre: 'KLYNN WELLNESS', descriptor: 'Cuidado personal',          accentApproved: false, activa: false, visible: true },
+
+  // Registradas, fuera de superficie. Entran cuando tengan identidad y
+  // catálogo. Publicarlas hoy solo comunicaría vacío.
   { key: 'bath',     nombre: 'KLYNN BATH',     descriptor: 'Baño',                      accentApproved: true,  activa: false, visible: false },
+  { key: 'storage',  nombre: 'KLYNN STORAGE',  descriptor: 'Orden y almacenamiento',    accentApproved: false, activa: false, visible: false },
+  { key: 'pet',      nombre: 'KLYNN PET',      descriptor: 'Vida con animales',         accentApproved: false, activa: false, visible: false },
+  { key: 'wellness', nombre: 'KLYNN WELLNESS', descriptor: 'Cuidado personal',          accentApproved: false, activa: false, visible: false },
 ]
 
+/** Las que se publican en esta fase. */
 export const VISIBLE_CATEGORIES = CATEGORIES.filter(c => c.visible)
 
 export const ACTIVE_CATEGORIES = CATEGORIES.filter(c => c.activa)

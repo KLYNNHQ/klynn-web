@@ -1,65 +1,47 @@
-import { Container, Eyebrow, Heading, Section } from '@/design-system/primitives'
+import { Container, Section } from '@/design-system/primitives'
 
 /**
- * Filosofía de marca.
+ * Filosofía.
  *
- * Tres principios, sin adornos. Es la sección que explica por qué KLYNN
- * puede fabricar una escoba y un cargador sin contradecirse: lo que une al
- * catálogo no es la industria, es el criterio.
+ * Una sola idea, a escala. La versión anterior eran tres principios
+ * numerados: estructura de consultoría, no de marca. Tres bloques de dos
+ * líneas se leen como un blog; una frase sola se lee como una convicción.
+ *
+ * Es además el único momento oscuro de la página. El fold es claro y las
+ * categorías son claras; sin este contraste la landing avanza en un solo
+ * tono y no respira. La inversión de valor da peso y marca el centro.
+ *
+ * El contenido responde a la pregunta estructural de KLYNN: por qué una
+ * misma marca puede hacer una fibra y un cargador sin contradecirse.
  */
-
-const PRINCIPIOS = [
-  {
-    n: '01',
-    titulo: 'Función primero',
-    texto:
-      'Cada objeto empieza por el problema que resuelve. Lo que no cumple una función, sobra.',
-  },
-  {
-    n: '02',
-    titulo: 'Hecho para durar',
-    texto:
-      'Diseñamos contra el reemplazo. Materiales, uniones y acabados pensados para años de uso, no para una temporada.',
-  },
-  {
-    n: '03',
-    titulo: 'Un solo sistema',
-    texto:
-      'Categorías distintas, mismo lenguaje. Un objeto KLYNN se reconoce sin leer la marca.',
-  },
-]
 
 export default function Filosofia() {
   return (
-    <Section id="filosofia" rhythm="loose" tone="light">
+    <Section id="filosofia" rhythm="loose" tone="dark">
       <Container>
-        <div className="grid gap-16 lg:grid-cols-12 lg:gap-12">
-          <div className="lg:col-span-5">
-            <Eyebrow>Filosofía</Eyebrow>
-            <Heading className="mt-6 max-w-[16ch]">
-              No hacemos categorías. Hacemos objetos.
-            </Heading>
-          </div>
-
-          <ul className="lg:col-span-6 lg:col-start-7">
-            {PRINCIPIOS.map((p, i) => (
-              <li
-                key={p.n}
-                className={`grid grid-cols-[3rem_1fr] gap-6 py-10 ${
-                  i > 0 ? 'border-t border-[var(--color-k-border)]' : 'pt-0'
-                }`}
-              >
-                <span className="k-caption pt-1 text-[var(--color-k-gray-mid)]">{p.n}</span>
-                <div>
-                  <h3 className="k-h3 text-[1.375rem] leading-[1.3]">{p.titulo}</h3>
-                  <p className="k-body mt-3 max-w-[46ch] leading-[1.7] text-[var(--color-k-gray-mid)]">
-                    {p.texto}
-                  </p>
-                </div>
-              </li>
-            ))}
-          </ul>
+        <div className="flex items-center gap-3">
+          <span
+            aria-hidden
+            className="h-[7px] w-[7px]"
+            style={{ background: 'var(--color-k-terracotta)' }}
+          />
+          <span className="k-caption uppercase tracking-[0.28em] opacity-60">
+            Filosofía
+          </span>
         </div>
+
+        <p className="k-h1 mt-16 max-w-[22ch] text-[clamp(1.875rem,5.6vw,4.75rem)] leading-[1.06] tracking-[-0.02em]">
+          Categorías distintas.
+          <br />
+          Un mismo criterio
+          <span style={{ color: 'var(--color-k-terracotta)' }}>.</span>
+        </p>
+
+        <p className="k-body mt-16 max-w-[46ch] text-[1.0625rem] leading-[1.75] opacity-70">
+          Lo que une a un objeto KLYNN con otro no es para qué sirve, sino cómo fue
+          decidido. Mismo estándar de materiales, misma economía de forma, misma
+          intención de que dure.
+        </p>
       </Container>
     </Section>
   )

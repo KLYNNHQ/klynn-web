@@ -61,7 +61,7 @@ export default function Hero() {
         </div>
 
         {/* Titular — apoyado sobre la regla */}
-        <h1 className="k-h1 max-w-[20ch] pb-10 text-[clamp(2.75rem,8.4vw,7.25rem)] leading-[0.98] tracking-[-0.022em]">
+        <h1 className="k-h1 max-w-[20ch] pb-10 text-[clamp(2.125rem,8.4vw,7.25rem)] leading-[0.98] tracking-[-0.022em]">
           Built to belong.
           <br />
           Designed to endure
@@ -72,7 +72,7 @@ export default function Hero() {
 
         {/* Banda de especificación */}
         <div className="flex flex-col gap-6 py-8 sm:flex-row sm:items-center sm:justify-between">
-          <ul className="flex flex-wrap items-center gap-x-12 gap-y-3">
+          <ul className="flex flex-wrap items-center gap-x-6 gap-y-3 sm:gap-x-12">
             {SPEC.map(s => (
               <li key={s.i} className="flex items-baseline gap-3">
                 <span className="k-caption text-[0.625rem] tracking-[0.2em] text-[var(--color-k-graphite)] opacity-40">

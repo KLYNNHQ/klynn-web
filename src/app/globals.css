@@ -114,7 +114,14 @@
 
 /* ========================================================================
  * Escala tipográfica KLYNN — valores exactos de la lámina 07
+ *
+ * Van en @layer components a propósito: el CSS sin capa gana a las utilidades
+ * de Tailwind (que viven en @layer utilities). Sin esto, `.k-h1` imponía 85px
+ * y anulaba cualquier `text-[clamp(...)]` de un componente — el titular no
+ * escalaba y desbordaba en móvil. Dentro de la capa, la utilidad manda y estas
+ * clases actúan como valor por defecto.
  * ====================================================================== */
+@layer components {
 .k-h1 {
   font-family: var(--font-k-display);
   font-weight: 700;
@@ -157,6 +164,7 @@
   font-size: 0.6875rem;    /* 11px */
   line-height: 0.8125rem;  /* 13px */
   letter-spacing: 0.02em;
+}
 }
 
 /* ========================================================================
