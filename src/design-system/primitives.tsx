@@ -48,9 +48,12 @@ const TONE: Record<Tone, string> = {
 type Rhythm = 'hero' | 'loose' | 'normal' | 'tight'
 
 const RHYTHM: Record<Rhythm, string> = {
-  // h + max-h (no min-h: en CSS min-height gana sobre max-height y el fold
-  // se estiraría sin tope en pantallas muy altas, perdiendo tensión).
-  hero: 'h-[100svh] min-h-[640px] max-h-[1080px] flex items-center',
+  // h + max-h (no min-h solo: en CSS min-height gana sobre max-height y el
+  // fold se estiraría sin tope en pantallas muy altas, perdiendo tensión).
+  // En móvil se comprime a 88svh: a pantalla completa el titular nadaba en
+  // vacío y el fold perdía tensión.
+  hero:
+    'h-[88svh] min-h-[560px] max-h-[1080px] sm:h-[100svh] sm:min-h-[640px] flex items-center',
   loose: 'py-32 lg:py-44',
   normal: 'py-24 lg:py-32',
   tight: 'py-16 lg:py-20',
