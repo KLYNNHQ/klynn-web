@@ -1,27 +1,17 @@
-import Navbar from '@/components/Navbar'
-import WhatsAppButton from '@/components/WhatsAppButton'
-import Hero from '@/components/Hero'
-import MarketplacesRibbon from '@/components/MarketplacesRibbon'
-import HeroFibras from '@/components/HeroFibras'
-import ProductHeroMop from '@/components/ProductHeroMop'
-import DistribuidoresCTA from '@/components/DistribuidoresCTA'
-import NeoShield from '@/components/NeoShield'
-import BeneficiosClave from '@/components/BeneficiosClave'
-import Logistica from '@/components/Logistica'
-import Nosotros from '@/components/Nosotros'
-import ContactForm from '@/components/ContactForm'
-import Footer from '@/components/Footer'
+import Navbar from '@/components/klynn/Navbar'
+import Hero from '@/components/klynn/Hero'
+import Filosofia from '@/components/klynn/Filosofia'
+import Categorias from '@/components/klynn/Categorias'
 
 /**
- * Home — estructura heredada, en transición a KLYNN Fase 1.
+ * Home KLYNN.
  *
- * La secuencia de secciones se reemplaza en la etapa de superficie del plan
- * Fase 1. Este archivo queda funcional y sin dependencias externas para poder
- * avanzar de forma incremental sobre tokens e identidad.
+ * Bloque 1 (marca): Navbar · Hero · Filosofía · Categorías.
  *
- * La integración WordPress/GraphQL fue retirada: nunca llegó a conectarse
- * (WP_GRAPHQL_URL sin valor) y todos los componentes ya renderizaban su
- * contenido estático. Cada sección es ahora su propia fuente de contenido.
+ * Las secciones MagiClean heredadas se retiraron del home: convivir con el
+ * sistema visual KLYNN rompía la lectura. Siguen en el repositorio y en las
+ * rutas de producto, y se reemplazan por sus equivalentes KLYNN en los
+ * bloques siguientes (productos destacados, beneficios, CTA, footer).
  */
 
 export default function Home() {
@@ -30,18 +20,9 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
-        <MarketplacesRibbon />
-        <div style={{ paddingTop: 80, paddingBottom: 80, background: '#fff' }}><HeroFibras /></div>
-        <div style={{ paddingTop: 80, paddingBottom: 80 }}><DistribuidoresCTA /></div>
-        <div style={{ paddingTop: 80, paddingBottom: 80 }}><ProductHeroMop /></div>
-        <div style={{ paddingTop: 80, paddingBottom: 80 }}><NeoShield /></div>
-        <div style={{ paddingTop: 80, paddingBottom: 80, background: '#fff' }}><BeneficiosClave /></div>
-        <div style={{ paddingTop: 80, paddingBottom: 80, background: '#fff' }}><Logistica /></div>
-        <div style={{ paddingTop: 80, paddingBottom: 80, background: '#fff' }}><Nosotros /></div>
-        <div style={{ paddingTop: 80, paddingBottom: 80 }}><ContactForm /></div>
+        <Filosofia />
+        <Categorias />
       </main>
-      <Footer />
-      <WhatsAppButton />
     </>
   )
 }

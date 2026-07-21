@@ -163,12 +163,22 @@
  * Acento por categoría — un contenedor con data-category expone
  * --k-accent, y los hijos lo consumen sin saber de qué categoría se trata.
  * ====================================================================== */
-[data-category]         { --k-accent: var(--color-k-terracotta); }
+/* Acento por defecto: Terracota de la paleta general. */
+[data-category]           { --k-accent: var(--color-k-terracotta); }
+
+/* Aprobadas en la lámina 06 del manual. */
 [data-category="clean"]   { --k-accent: var(--color-k-clean); }
 [data-category="tech"]    { --k-accent: var(--color-k-tech); }
 [data-category="home"]    { --k-accent: var(--color-k-home); }
 [data-category="kitchen"] { --k-accent: var(--color-k-kitchen); }
 [data-category="bath"]    { --k-accent: var(--color-k-bath); }
+
+/* SIN acento aprobado — heredan el neutro del sistema hasta que exista
+ * decisión de marca. No se les inventa color. Al aprobarse, se añade la
+ * regla aquí y nada más cambia en toda la aplicación. */
+[data-category="storage"],
+[data-category="pet"],
+[data-category="wellness"] { --k-accent: var(--color-k-gray-mid); }
 
 html {
   scroll-behavior: smooth;

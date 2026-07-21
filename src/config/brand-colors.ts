@@ -31,4 +31,8 @@ export const categoryColors = {
 export const inkSpec = '#2E3135'
 
 export type BrandColors = typeof brandColors
-export type CategoryKey = keyof typeof categoryColors
+
+/** Categorías CON acento aprobado en el manual. El registro completo de
+ *  categorías (incluidas las que aún no tienen color) vive en
+ *  `@/lib/klynn/categories`. */
+export type ApprovedCategoryKey = keyof typeof categoryColors
