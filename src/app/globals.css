@@ -51,7 +51,124 @@
   /* Typography */
   --font-sans: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
   --font-serif: var(--font-playfair), ui-serif, Georgia, serif;
+
+  /* ======================================================================
+   * SISTEMA KLYNN — capa canónica
+   * ----------------------------------------------------------------------
+   * Fuente: Master Design Manual v1.0, láminas 05 (Sistema Cromático),
+   * 06 (Colores de Categoría) y 07 (Tipografía).
+   *
+   * Los tokens de arriba (--color-primary, --color-accent, --color-deep…)
+   * son la paleta MagiClean heredada. Se conservan SOLO para que las
+   * secciones aún no migradas sigan renderizando. Están DEPRECADOS: no
+   * usarlos en componentes nuevos. Se eliminan cuando la última sección
+   * migre a la capa `k-`.
+   * ====================================================================== */
+
+  /* --- Primitivas: paleta oficial (lámina 05) --- */
+  --color-k-white: #F5F4F1;      /* Blanco cálido */
+  --color-k-graphite: #282625;   /* Grafito */
+  --color-k-gray-light: #D0D0D4; /* Gris claro */
+  --color-k-gray-mid: #9C9C9C;   /* Gris medio */
+  --color-k-terracotta: #D07140; /* Terracota */
+
+  /* Gris de texto de la lámina 07. NO coincide con Grafito (#282625).
+   * Discrepancia reportada, pendiente de decisión. Mientras tanto el texto
+   * usa Grafito (paleta oficial) y este token queda disponible sin uso. */
+  --color-k-ink-spec: #2E3135;
+
+  /* --- Acentos por categoría (lámina 06) --- */
+  --color-k-clean: #D87345;
+  --color-k-tech: #202073;
+  --color-k-home: #4D8F4A;
+  --color-k-kitchen: #D0A447;
+  --color-k-bath: #3C7FAA;
+
+  /* --- Semánticos: derivados de las primitivas, nunca hex sueltos --- */
+  --color-k-surface: var(--color-k-white);
+  --color-k-surface-raised: #FFFFFF;
+  --color-k-surface-inverse: var(--color-k-graphite);
+  --color-k-ink: var(--color-k-graphite);
+  --color-k-ink-muted: var(--color-k-gray-mid);
+  --color-k-ink-inverse: var(--color-k-white);
+  --color-k-border: var(--color-k-gray-light);
+  --color-k-border-strong: var(--color-k-gray-mid);
+  --color-k-accent: var(--color-k-terracotta);
+  --color-k-focus: var(--color-k-graphite);
+
+  /* Funcionales: el manual NO los define. Se toman de la paleta de
+   * categoría para no introducir color ajeno al sistema. `danger` no tiene
+   * equivalente aprobado — provisional, pendiente de decisión de marca. */
+  --color-k-success: var(--color-k-home);
+  --color-k-warning: var(--color-k-kitchen);
+  --color-k-info: var(--color-k-bath);
+  --color-k-danger: #A03518; /* PROVISIONAL — sin respaldo en el manual */
+
+  /* --- Tipografía (lámina 07) ---
+   * "KLYNN Display" / "KLYNN Text" no existen como archivo de fuente en
+   * KLYNN_OS. Inter Tight / Inter actúan de sustitutas. Cuando llegue la
+   * fuente oficial, solo cambian estas dos declaraciones. */
+  --font-k-display: var(--font-inter-tight), ui-sans-serif, system-ui, sans-serif;
+  --font-k-text: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 }
+
+/* ========================================================================
+ * Escala tipográfica KLYNN — valores exactos de la lámina 07
+ * ====================================================================== */
+.k-h1 {
+  font-family: var(--font-k-display);
+  font-weight: 700;
+  font-size: 5.3125rem;  /* 85px */
+  line-height: 6rem;     /* 96px */
+  letter-spacing: -0.01em;
+}
+.k-h2 {
+  font-family: var(--font-k-display);
+  font-weight: 700;
+  font-size: 2.6875rem;  /* 43px */
+  line-height: 3rem;     /* 48px */
+  letter-spacing: -0.005em;
+}
+.k-h3 {
+  font-family: var(--font-k-text);
+  font-weight: 500;
+  font-size: 1.6875rem;  /* 27px */
+  line-height: 2rem;     /* 32px */
+  letter-spacing: 0;
+}
+.k-body {
+  font-family: var(--font-k-text);
+  font-weight: 400;
+  font-size: 1rem;         /* 16px */
+  line-height: 1.3125rem;  /* 21px */
+  letter-spacing: 0.01em;
+}
+.k-button {
+  font-family: var(--font-k-text);
+  font-weight: 700;
+  font-size: 1rem;    /* 16px */
+  line-height: 1rem;  /* 16px */
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.k-caption {
+  font-family: var(--font-k-text);
+  font-weight: 300;
+  font-size: 0.6875rem;    /* 11px */
+  line-height: 0.8125rem;  /* 13px */
+  letter-spacing: 0.02em;
+}
+
+/* ========================================================================
+ * Acento por categoría — un contenedor con data-category expone
+ * --k-accent, y los hijos lo consumen sin saber de qué categoría se trata.
+ * ====================================================================== */
+[data-category]         { --k-accent: var(--color-k-terracotta); }
+[data-category="clean"]   { --k-accent: var(--color-k-clean); }
+[data-category="tech"]    { --k-accent: var(--color-k-tech); }
+[data-category="home"]    { --k-accent: var(--color-k-home); }
+[data-category="kitchen"] { --k-accent: var(--color-k-kitchen); }
+[data-category="bath"]    { --k-accent: var(--color-k-bath); }
 
 html {
   scroll-behavior: smooth;

@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Montserrat, Playfair_Display } from 'next/font/google'
+import { Montserrat, Playfair_Display, Inter, Inter_Tight } from 'next/font/google'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import CookieBanner from '@/components/CookieBanner'
 import ConsentAwareAnalytics from '@/components/ConsentAwareAnalytics'
@@ -20,6 +20,28 @@ const playfair = Playfair_Display({
   weight: ['400', '700'],
   style: ['normal', 'italic'],
   variable: '--font-playfair',
+  display: 'swap',
+  preload: true,
+})
+
+/* --- Tipografía KLYNN ---------------------------------------------------
+ * Sustitutas de "KLYNN Display" / "KLYNN Text" (lámina 07 del manual), que
+ * no existen como archivo de fuente en KLYNN_OS. Los pesos cargados son
+ * exactamente los que la lámina especifica: Light 300 (caption),
+ * Regular 400 (cuerpo), Medium 500 (H3), Bold 700 (H1/H2/botón).
+ * Al llegar la fuente oficial se sustituyen aquí y en globals.css. */
+const interTight = Inter_Tight({
+  subsets: ['latin'],
+  weight: ['500', '700'],
+  variable: '--font-inter-tight',
+  display: 'swap',
+  preload: true,
+})
+
+const inter = Inter({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '700'],
+  variable: '--font-inter',
   display: 'swap',
   preload: true,
 })
@@ -107,7 +129,10 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="es" className={`${montserrat.variable} ${playfair.variable}`}>
+    <html
+      lang="es"
+      className={`${montserrat.variable} ${playfair.variable} ${interTight.variable} ${inter.variable}`}
+    >
       <body className="font-sans antialiased">
         <script
           type="application/ld+json"
