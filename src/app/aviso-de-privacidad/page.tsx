@@ -1,12 +1,12 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer'
+import Navbar from '@/components/klynn/Navbar'
+import Footer from '@/components/klynn/Footer'
 
 export const metadata: Metadata = {
-  title: 'Aviso de Privacidad — Prolim BH, SA de CV',
+  title: 'Aviso de Privacidad — Grupo KLYNN S.A. de C.V.',
   description:
-    'Aviso de Privacidad de Prolim BH, SA de CV conforme a la Ley Federal de Protección de Datos Personales en Posesión de los Particulares.',
+    'Aviso de Privacidad de Grupo KLYNN S.A. de C.V. conforme a la Ley Federal de Protección de Datos Personales en Posesión de los Particulares.',
   robots: { index: true, follow: true },
 }
 
@@ -17,7 +17,7 @@ export default function AvisoDePrivacidad() {
 
       <main className="bg-white min-h-screen">
         {/* Header */}
-        <div className="bg-[#0A1628] text-white pt-32 pb-14 px-6">
+        <div className="bg-[#282625] text-white pt-32 pb-14 px-6">
           <div className="max-w-3xl mx-auto">
             <p className="text-xs font-semibold tracking-widest text-white/50 uppercase mb-3">
               Aviso Legal
@@ -34,7 +34,7 @@ export default function AvisoDePrivacidad() {
         </div>
 
         {/* Body */}
-        <div className="max-w-3xl mx-auto px-6 py-16 space-y-12 text-[#1A1A1A]">
+        <div className="max-w-3xl mx-auto px-6 py-16 space-y-12 text-[#282625]">
 
           {/* 1. Responsable */}
           <section>
@@ -42,32 +42,15 @@ export default function AvisoDePrivacidad() {
               I. Identidad y domicilio del Responsable
             </h2>
             <p className="text-sm font-normal leading-relaxed text-ink-legal mb-4">
-              <strong className="font-semibold text-[#1A1A1A]">Prolim BH, SA de CV</strong>{' '}
+              <strong className="font-semibold text-[#282625]">Grupo KLYNN S.A. de C.V.</strong>{' '}
               (en adelante, <em>&ldquo;el Responsable&rdquo;</em>) es el responsable del tratamiento
               de sus datos personales.
             </p>
-            <ul className="text-sm font-normal text-ink-legal space-y-1.5 leading-relaxed">
-              <li>
-                <span className="font-semibold text-[#1A1A1A]">Domicilio:</span>{' '}
-                Calle 3, No. 47, Local 109, Col. Industrial Alce Blanco,
-                Naucalpan de Juárez, Estado de México, C.P. 53370, México.
-              </li>
-              <li>
-                <span className="font-semibold text-[#1A1A1A]">Correo electrónico:</span>{' '}
-                <a
-                  href="mailto:datos@magicleanproducts.com"
-                  className="text-[#0076FF] hover:underline"
-                >
-                  datos@magicleanproducts.com
-                </a>
-              </li>
-              <li>
-                <span className="font-semibold text-[#1A1A1A]">Teléfono:</span>{' '}
-                <a href="tel:5571553635" className="text-[#0076FF] hover:underline">
-                  55 7155 3635
-                </a>
-              </li>
-            </ul>
+            <p className="text-sm font-normal leading-relaxed text-ink-legal">
+              Los datos de identificación y contacto del Responsable (domicilio,
+              correo electrónico y teléfono) se publicarán en este aviso una vez
+              constituida la entidad legal.
+            </p>
           </section>
 
           {/* 2. Datos personales */}
@@ -81,7 +64,7 @@ export default function AvisoDePrivacidad() {
             </p>
 
             <div className="mb-5">
-              <p className="text-xs font-semibold tracking-widest text-[#0076FF] uppercase mb-2">
+              <p className="text-xs font-semibold tracking-widest text-[#282625] uppercase mb-2">
                 A. Formulario de contacto / cotización
               </p>
               <ul className="list-disc list-inside text-sm font-normal text-ink-legal space-y-1 leading-relaxed ml-1">
@@ -96,7 +79,7 @@ export default function AvisoDePrivacidad() {
             </div>
 
             <div>
-              <p className="text-xs font-semibold tracking-widest text-[#0076FF] uppercase mb-2">
+              <p className="text-xs font-semibold tracking-widest text-[#282625] uppercase mb-2">
                 B. Datos de navegación (cookies y tecnologías similares)
               </p>
               <ul className="list-disc list-inside text-sm font-normal text-ink-legal space-y-1 leading-relaxed ml-1">
@@ -115,7 +98,7 @@ export default function AvisoDePrivacidad() {
             </h2>
 
             <div className="mb-6">
-              <p className="text-xs font-semibold tracking-widest text-[#1A1A1A] uppercase mb-3">
+              <p className="text-xs font-semibold tracking-widest text-[#282625] uppercase mb-3">
                 Finalidades necesarias (no requieren consentimiento)
               </p>
               <ul className="list-disc list-inside text-sm font-normal text-ink-legal space-y-1.5 leading-relaxed ml-1">
@@ -125,8 +108,8 @@ export default function AvisoDePrivacidad() {
               </ul>
             </div>
 
-            <div className="bg-[#F5F7FA] rounded-xl p-5 border border-[#E8EAED]">
-              <p className="text-xs font-semibold tracking-widest text-[#0076FF] uppercase mb-3">
+            <div className="bg-[#F5F4F1] rounded-xl p-5 border border-[#E8EAED]">
+              <p className="text-xs font-semibold tracking-widest text-[#282625] uppercase mb-3">
                 Finalidades no necesarias (requieren consentimiento)
               </p>
               <ul className="list-disc list-inside text-sm font-normal text-ink-legal space-y-1.5 leading-relaxed ml-1">
@@ -135,15 +118,9 @@ export default function AvisoDePrivacidad() {
                 <li>Invitaciones a participar en encuestas de satisfacción.</li>
               </ul>
               <p className="text-xs text-ink-muted mt-3 leading-relaxed">
-                Si no desea que sus datos sean tratados para estas finalidades, puede
-                manifestarlo en cualquier momento escribiendo a{' '}
-                <a
-                  href="mailto:datos@magicleanproducts.com"
-                  className="text-[#0076FF] hover:underline"
-                >
-                  datos@magicleanproducts.com
-                </a>
-                .
+                Si no desea que sus datos sean tratados para estas finalidades, podrá
+                manifestarlo a través del correo de contacto del Responsable, que se
+                publicará una vez constituida la entidad legal.
               </p>
             </div>
           </section>
@@ -161,9 +138,9 @@ export default function AvisoDePrivacidad() {
               <table className="w-full text-sm border-collapse">
                 <thead>
                   <tr className="border-b-2 border-[#E8EAED]">
-                    <th className="text-left py-2 pr-4 font-semibold text-[#1A1A1A] text-xs uppercase tracking-wide">Tercero</th>
-                    <th className="text-left py-2 pr-4 font-semibold text-[#1A1A1A] text-xs uppercase tracking-wide">País</th>
-                    <th className="text-left py-2 font-semibold text-[#1A1A1A] text-xs uppercase tracking-wide">Finalidad</th>
+                    <th className="text-left py-2 pr-4 font-semibold text-[#282625] text-xs uppercase tracking-wide">Tercero</th>
+                    <th className="text-left py-2 pr-4 font-semibold text-[#282625] text-xs uppercase tracking-wide">País</th>
+                    <th className="text-left py-2 font-semibold text-[#282625] text-xs uppercase tracking-wide">Finalidad</th>
                   </tr>
                 </thead>
                 <tbody className="text-ink-legal font-light">
@@ -198,17 +175,14 @@ export default function AvisoDePrivacidad() {
               el consentimiento otorgado para finalidades no necesarias.
             </p>
 
-            <div className="bg-[#0A1628] text-white rounded-xl p-5 mb-4">
-              <p className="text-xs font-semibold tracking-widest text-white/60 uppercase mb-3">
-                Para ejercer sus derechos, envíe un correo a:
+            <div className="bg-[#282625] text-white rounded-xl p-5 mb-4">
+              <p className="text-xs font-semibold tracking-widest text-white/60 uppercase mb-2">
+                Ejercicio de derechos ARCO
               </p>
-              <a
-                href="mailto:datos@magicleanproducts.com"
-                className="text-[#0076FF] font-semibold text-base hover:underline"
-              >
-                datos@magicleanproducts.com
-              </a>
-              <p className="text-xs text-white/60 mt-1">Atención: Responsable de Datos Personales</p>
+              <p className="text-sm text-white/80 leading-relaxed">
+                El correo de contacto para el ejercicio de derechos ARCO se publicará
+                en este aviso una vez constituida la entidad legal.
+              </p>
             </div>
 
             <p className="text-sm font-normal text-ink-legal mb-3 leading-relaxed">
@@ -238,18 +212,18 @@ export default function AvisoDePrivacidad() {
             </p>
             <div className="space-y-3">
               <div className="flex gap-4 items-start">
-                <span className="mt-0.5 w-2 h-2 rounded-full bg-[#0076FF] shrink-0" />
+                <span className="mt-0.5 w-2 h-2 rounded-full bg-[#282625] shrink-0" />
                 <div>
-                  <p className="text-sm font-semibold text-[#1A1A1A]">Cookies técnicas (necesarias)</p>
+                  <p className="text-sm font-semibold text-[#282625]">Cookies técnicas (necesarias)</p>
                   <p className="text-sm font-normal text-ink-legal leading-relaxed">
                     Indispensables para el funcionamiento del sitio. No pueden desactivarse.
                   </p>
                 </div>
               </div>
               <div className="flex gap-4 items-start">
-                <span className="mt-0.5 w-2 h-2 rounded-full bg-[#0076FF] shrink-0" />
+                <span className="mt-0.5 w-2 h-2 rounded-full bg-[#282625] shrink-0" />
                 <div>
-                  <p className="text-sm font-semibold text-[#1A1A1A]">Cookies de analítica (Vercel Analytics)</p>
+                  <p className="text-sm font-semibold text-[#282625]">Cookies de analítica (Vercel Analytics)</p>
                   <p className="text-sm font-normal text-ink-legal leading-relaxed">
                     Recopilan datos de navegación de forma anonimizada para entender el uso del sitio.
                     No se utilizan para publicidad ni segmentación comercial.
@@ -279,10 +253,10 @@ export default function AvisoDePrivacidad() {
 
           {/* Nav bottom */}
           <div className="pt-4 flex flex-wrap gap-4 text-sm">
-            <Link href="/" className="text-[#0076FF] hover:underline font-medium">
+            <Link href="/" className="text-[#282625] hover:underline font-medium">
               ← Volver al inicio
             </Link>
-            <Link href="/terminos-de-uso" className="text-[#0076FF] hover:underline font-medium">
+            <Link href="/terminos-de-uso" className="text-[#282625] hover:underline font-medium">
               Términos de uso →
             </Link>
           </div>

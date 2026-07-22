@@ -1,13 +1,16 @@
-// Fuente única de dominios/URLs (valores ACTUALES). No conectado aún a componentes.
-// FASE VISUAL: migrar website a klynn.mx y revisar marketplaces/legacy.
+// Dominios y URLs de KLYNN. Fuente única de la marca.
 export const brandUrls = {
-  website: 'https://magiclean.mx',                 // FASE VISUAL → klynn.mx
-  legacyDomain: 'https://magicleanproducts.com',
-  vercelFallback: 'https://magiclean-web.vercel.app',
+  /** Dominio canónico. Todo canonical, OG, sitemap y JSON-LD deriva de aquí. */
+  website: 'https://klynn.com.mx',
+  /**
+   * Marketplaces: las tiendas de Amazon, Mercado Libre y Walmart pertenecen
+   * a la marca anterior y NO se enlazan desde la superficie de KLYNN.
+   * Entrarán cuando existan tiendas propias.
+   */
   marketplaces: {
-    amazon: 'https://www.amazon.com.mx/stores/MAGICLEAN/page/CEC81E69-6144-4477-9A94-954741CB3AA4',
-    mercadoLibre: 'https://www.mercadolibre.com.mx/tienda/magiclean',
-    walmart: 'https://www.walmart.com.mx/search?q=Magiclean&facet=brand:Magiclean',
+    amazon: null,
+    mercadoLibre: null,
+    walmart: null,
   },
 } as const
 

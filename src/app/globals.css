@@ -1,68 +1,18 @@
 @import "tailwindcss";
 
-/*
- * WCAG AA exception — Brand Blue (#0076FF)
- * --------------------------------------------------------------------------
- * The brand blue (#0076FF) sits at 4.4:1 against #FFFFFF — 0.1
- * below the AA threshold of 4.5:1. We accept this as a documented brand
- * exception (audit v3 finding B-05) rather than darkening the hue.
- *
- * Rationale: --color-primary-dark (#0052CC) gives 7.2:1 (AAA) and is used
- * for hover states and dark-mode pairings, but the published brand identity
- * uses #0076FF for primary CTAs and accent text. Switching the canon would
- * misalign with packaging and marketplace listings already in market.
- *
- * Apply this exception ONLY to:
- *   - Primary CTAs with white text (Hero, CookieBanner, StickyCtaBar)
- *   - Eyebrow labels in `text-[#0076FF]` over white/cream backgrounds
- *   - Inline links in body copy and legal pages
- *
- * Accessibility mitigations live in the components themselves:
- *   - all #0076FF surfaces have either underline, icon, or button affordance
- *   - hover/focus state shifts to #0052CC (AAA) for keyboard/AT users
- *
- * If Lighthouse / axe-core CI is added later, gate `color-contrast` to
- * minRatio: 4.4 instead of 4.5 with a comment pointing here. Re-evaluate
- * when brand identity refresh ships (post BioBase PRO).
- */
-
 @theme {
-  /* Brand colors */
-  --color-primary: #0076FF;
-  --color-primary-dark: #0052CC;
-  --color-accent: #FF2B2B;
-  --color-deep: #050B17;
-  --color-deep-darker: #03070F;
-  --color-ink: #1A1A1A;
+  /* Grises neutros, usados como tinta de cuerpo por las páginas legales. */
   --color-ink-legal: #444444;
   --color-ink-muted: #666666;
-  --color-ink-subtle: #6B7280;
-  --color-surface: #F5F7FA;
-  --color-surface-alt: #FAFAFA;
-  --color-surface-blue: #F0F5FF;
-  --color-surface-cream: #FFFBF0;
-  --color-surface-red: #FFF0F0;
-  --color-border: #E8EAED;
-  --color-border-strong: #E0E3E8;
 
-  /* Third-party brand (WhatsApp) */
-  --color-whatsapp: #25D366;
-
-  /* Typography */
-  --font-sans: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
-  --font-serif: var(--font-playfair), ui-serif, Georgia, serif;
+  /* La fuente base del sitio es Inter (misma familia de texto del sistema
+   * KLYNN). Cubre lo que no usa las clases .k-*, como las páginas legales. */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 
   /* ======================================================================
-   * SISTEMA KLYNN — capa canónica
-   * ----------------------------------------------------------------------
+   * SISTEMA KLYNN — única paleta de la marca.
    * Fuente: Master Design Manual v1.0, láminas 05 (Sistema Cromático),
    * 06 (Colores de Categoría) y 07 (Tipografía).
-   *
-   * Los tokens de arriba (--color-primary, --color-accent, --color-deep…)
-   * son la paleta MagiClean heredada. Se conservan SOLO para que las
-   * secciones aún no migradas sigan renderizando. Están DEPRECADOS: no
-   * usarlos en componentes nuevos. Se eliminan cuando la última sección
-   * migre a la capa `k-`.
    * ====================================================================== */
 
   /* --- Primitivas: paleta oficial (lámina 05) --- */
@@ -168,25 +118,18 @@
 }
 
 /* ========================================================================
- * Acento por categoría — un contenedor con data-category expone
- * --k-accent, y los hijos lo consumen sin saber de qué categoría se trata.
+ * Acento por categoría.
+ *
+ * Decisión de marca: NINGUNA categoría lleva color en la superficie. El
+ * color llega únicamente por fotografía real de producto, nunca como tarjeta
+ * coloreada. `--k-accent` resuelve a grafito para todas: el hook por
+ * categoría se conserva por si en el futuro se decide reintroducir color,
+ * pero hoy no pinta color industrial.
+ *
+ * Los valores cromáticos por categoría del manual (lámina 06) siguen
+ * documentados en config/brand-colors.ts como metadato, sin aplicarse a UI.
  * ====================================================================== */
-/* Acento por defecto: Terracota de la paleta general. */
-[data-category]           { --k-accent: var(--color-k-terracotta); }
-
-/* Aprobadas en la lámina 06 del manual. */
-[data-category="clean"]   { --k-accent: var(--color-k-clean); }
-[data-category="tech"]    { --k-accent: var(--color-k-tech); }
-[data-category="home"]    { --k-accent: var(--color-k-home); }
-[data-category="kitchen"] { --k-accent: var(--color-k-kitchen); }
-[data-category="bath"]    { --k-accent: var(--color-k-bath); }
-
-/* SIN acento aprobado — heredan el neutro del sistema hasta que exista
- * decisión de marca. No se les inventa color. Al aprobarse, se añade la
- * regla aquí y nada más cambia en toda la aplicación. */
-[data-category="storage"],
-[data-category="pet"],
-[data-category="wellness"] { --k-accent: var(--color-k-gray-mid); }
+[data-category] { --k-accent: var(--color-k-graphite); }
 
 html {
   scroll-behavior: smooth;
@@ -195,24 +138,11 @@ html {
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #1A1A1A;
+  color: var(--color-k-graphite);
 }
 
 * {
   box-sizing: border-box;
-}
-
-/* Serif utility */
-.font-serif {
-  font-family: var(--font-playfair), ui-serif, Georgia, serif;
-}
-
-/* Editorial headline style */
-.headline-editorial {
-  font-family: var(--font-playfair), ui-serif, Georgia, serif;
-  font-weight: 400;
-  letter-spacing: -0.03em;
-  line-height: 1.05;
 }
 
 /* Eyebrow label style */

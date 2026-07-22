@@ -10,8 +10,22 @@ import { brandAssets } from './brand-assets'
 
 export const brand = {
   brandName: 'KLYNN',
-  legalName: 'Prolim BH, SA de CV', // razón social — NO cambia
-  technologyName: 'NeoShield',      // tecnología propia — NO cambia
+  /**
+   * Razón social publicada.
+   *
+   * ⚠️ VERIFICAR ANTES DE PUBLICAR: este valor aparece en el aviso de
+   * privacidad, los términos de uso y el JSON-LD. Un aviso de privacidad
+   * debe identificar al responsable real del tratamiento de datos; si la
+   * sociedad no está constituida, el dato debe corregirse antes de que el
+   * sitio sea público.
+   */
+  legalName: 'Grupo KLYNN, S.A. de C.V.', // temporal — pendiente de constitución
+  /**
+   * Nombre de tecnología de marca. Sin definir: cualquier tecnología heredada
+   * quedó fuera de la superficie pública. Se poblará cuando exista una propia
+   * de KLYNN.
+   */
+  technologyName: null,
   colors: brandColors,
   categoryColors,
   fonts: brandFonts,

@@ -1,38 +1,19 @@
 import type { MetadataRoute } from 'next'
 import { siteUrl } from '@/lib/config'
-import productsData from '@/lib/products.json'
 
-type ProductMin = {
-  sku: string
-  estado: 'activo' | 'descontinuado' | 'en_desarrollo'
-}
-
-const activeSkus = (productsData as ProductMin[])
-  .filter((p) => p.estado === 'activo')
-  .map((p) => p.sku)
-
+/**
+ * Sitemap.
+ *
+ * Solo las rutas que existen hoy tras la purga. Las rutas de catálogo
+ * (/categorias, /categoria/[slug], /productos, /productos/[slug]) se añaden
+ * cuando esos bloques se construyan, no antes: enumerar rutas inexistentes
+ * daña el SEO.
+ */
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date()
 
   return [
-    {
-      url: siteUrl,
-      lastModified: now,
-      changeFrequency: 'weekly',
-      priority: 1,
-    },
-    {
-      url: `${siteUrl}/productos`,
-      lastModified: now,
-      changeFrequency: 'weekly',
-      priority: 0.9,
-    },
-    ...activeSkus.map((sku) => ({
-      url: `${siteUrl}/productos/${sku}`,
-      lastModified: now,
-      changeFrequency: 'monthly' as const,
-      priority: 0.8,
-    })),
+    { url: siteUrl, lastModified: now, changeFrequency: 'weekly', priority: 1 },
     {
       url: `${siteUrl}/aviso-de-privacidad`,
       lastModified: now,

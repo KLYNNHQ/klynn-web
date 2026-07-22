@@ -23,14 +23,13 @@ import { Container, Section } from '@/design-system/primitives'
  *    Bang & Olufsen en sus fichas técnicas. Aporta densidad y precisión sin
  *    añadir ruido, y da al ojo el tercer punto de lectura que faltaba.
  *
- * 5. UNA SOLA LENGUA. El fold es capa de marca y habla inglés; la operación
- *    habla español más abajo. Una regla explícita en lugar de una mezcla.
+ * 5. TODO EN ESPAÑOL. La experiencia completa habla español, sin excepción.
  */
 
 const SPEC = [
-  { i: '01', label: 'Mexico' },
-  { i: '02', label: 'Seven categories' },
-  { i: '03', label: 'One standard' },
+  { i: '01', label: 'México' },
+  { i: '02', label: 'Diez categorías' },
+  { i: '03', label: 'Un estándar' },
 ]
 
 export default function Hero() {
@@ -66,15 +65,17 @@ export default function Hero() {
             style={{ background: 'var(--color-k-terracotta)' }}
           />
           <span className="k-caption uppercase tracking-[0.28em] text-[var(--color-k-graphite)] opacity-70">
-            Design system
+            La marca
           </span>
         </div>
 
-        {/* Titular — apoyado sobre la regla */}
-        <h1 className="k-h1 max-w-[20ch] pb-8 text-[clamp(3rem,8.4vw,7.25rem)] leading-[0.98] tracking-[-0.022em] sm:pb-10">
-          Built to belong.
+        {/* Titular — apoyado sobre la regla.
+            Copy en español (propuesto — sujeto a tu revisión en la fase de
+            construcción). */}
+        <h1 className="k-h1 max-w-[16ch] pb-8 text-[clamp(3rem,8.4vw,7.25rem)] leading-[0.98] tracking-[-0.022em] sm:pb-10">
+          Objetos para
           <br />
-          Designed to endure
+          la vida diaria
           <span style={{ color: 'var(--color-k-terracotta)' }}>.</span>
         </h1>
 
@@ -102,7 +103,7 @@ export default function Hero() {
           </ul>
 
           <span className="k-caption hidden items-center gap-3 text-[0.625rem] uppercase tracking-[0.2em] text-[var(--color-k-graphite)] opacity-40 sm:flex">
-            Scroll
+            Descubre
             <span aria-hidden className="block h-px w-10 bg-current" />
           </span>
         </div>

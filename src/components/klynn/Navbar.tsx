@@ -18,13 +18,15 @@ import Wordmark from './Wordmark'
  * El CTA comercial no vive aquí: en el primer fold una petición de
  * presupuesto contradice el registro de marca. Aparece más abajo.
  *
- * Idioma: la capa de marca habla inglés; la operación, español.
+ * Idioma: toda la experiencia en español.
  */
 
+// Solo anclas de la home mientras las rutas internas se reconstruyen. La
+// navegación definitiva (Inicio · Categorías · Productos · Nosotros ·
+// Contacto) llega en la fase de construcción. /productos se purgó.
 const LINKS = [
-  { href: '/productos', label: 'Products' },
-  { href: '/#categorias', label: 'Categories' },
-  { href: '/#filosofia', label: 'About' },
+  { href: '/#categorias', label: 'Categorías' },
+  { href: '/#filosofia', label: 'Filosofía' },
 ]
 
 export default function Navbar() {

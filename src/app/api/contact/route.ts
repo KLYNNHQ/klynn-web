@@ -164,8 +164,10 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ success: true })
     }
 
-    // 2️⃣  Notificación interna al equipo comercial
-    const notifyTo = process.env.NOTIFY_EMAIL || 'hola@magiclean.mx'
+    // 2️⃣  Notificación interna al equipo comercial.
+    // Sin NOTIFY_EMAIL configurado no se envía: el lead ya quedó en Supabase.
+    // No hay correo heredado como respaldo.
+    const notifyTo = process.env.NOTIFY_EMAIL
     const canalLabel = CANAL_LABELS[body.canal] || body.canal
 
     // Valores escapados para uso en HTML de email
@@ -180,18 +182,18 @@ export async function POST(req: NextRequest) {
     }
 
     try {
-      await resend.emails.send({
+      if (notifyTo) await resend.emails.send({
         from:    process.env.RESEND_FROM_NOTIFY || 'onboarding@resend.dev',
         to:      notifyTo,
         subject: `🟢 Nuevo lead B2B — ${safe.empresa} (${safe.canal})`,
         html: `
           <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; color: #1A1A1A;">
-            <div style="background: #0076FF; padding: 24px 32px; border-radius: 8px 8px 0 0;">
+            <div style="background: #D07140; padding: 24px 32px; border-radius: 8px 8px 0 0;">
               <h1 style="color: white; margin: 0; font-size: 20px; font-weight: 700;">
-                Nuevo lead desde magiclean.mx
+                Nuevo lead desde klynn.com.mx
               </h1>
             </div>
-            <div style="background: #F5F7FA; padding: 32px; border-radius: 0 0 8px 8px; border: 1px solid #E5E7EB;">
+            <div style="background: #F5F4F1; padding: 32px; border-radius: 0 0 8px 8px; border: 1px solid #E5E7EB;">
 
               <table style="width: 100%; border-collapse: collapse;">
                 <tr>
@@ -205,7 +207,7 @@ export async function POST(req: NextRequest) {
                 <tr style="border-top: 1px solid #E5E7EB;">
                   <td style="padding: 10px 0; color: #6B7280; font-size: 13px; vertical-align: top;">Email</td>
                   <td style="padding: 10px 0; font-size: 14px;">
-                    <a href="mailto:${safe.email}" style="color: #0076FF;">${safe.email}</a>
+                    <a href="mailto:${safe.email}" style="color: #D07140;">${safe.email}</a>
                   </td>
                 </tr>
                 <tr style="border-top: 1px solid #E5E7EB;">
@@ -215,7 +217,7 @@ export async function POST(req: NextRequest) {
                 <tr style="border-top: 1px solid #E5E7EB;">
                   <td style="padding: 10px 0; color: #6B7280; font-size: 13px; vertical-align: top;">Canal</td>
                   <td style="padding: 10px 0; font-size: 14px;">
-                    <span style="background: #0076FF; color: white; padding: 3px 10px; border-radius: 20px; font-size: 12px; font-weight: 600;">
+                    <span style="background: #D07140; color: white; padding: 3px 10px; border-radius: 20px; font-size: 12px; font-weight: 600;">
                       ${safe.canal}
                     </span>
                   </td>
@@ -233,15 +235,15 @@ export async function POST(req: NextRequest) {
               </table>
 
               <div style="margin-top: 24px; padding-top: 24px; border-top: 1px solid #E5E7EB;">
-                <a href="mailto:${safe.email}?subject=MagiClean — Tu solicitud profesional"
-                   style="background: #0076FF; color: white; padding: 12px 24px; border-radius: 24px;
+                <a href="mailto:${safe.email}?subject=KLYNN — Tu solicitud"
+                   style="background: #D07140; color: white; padding: 12px 24px; border-radius: 24px;
                           text-decoration: none; font-weight: 600; font-size: 14px; display: inline-block;">
                   Responder a ${safe.nombre} →
                 </a>
               </div>
 
               <p style="margin-top: 24px; font-size: 11px; color: #9CA3AF;">
-                Lead recibido el ${new Date().toLocaleString('es-MX', { timeZone: 'America/Mexico_City' })} · MagiClean Web
+                Lead recibido el ${new Date().toLocaleString('es-MX', { timeZone: 'America/Mexico_City' })} · KLYNN
               </p>
             </div>
           </div>
@@ -257,19 +259,19 @@ export async function POST(req: NextRequest) {
       await resend.emails.send({
         from:    process.env.RESEND_FROM_CONFIRM || 'onboarding@resend.dev',
         to:      body.email,
-        subject: 'Recibimos tu solicitud — MagiClean',
+        subject: 'Recibimos tu solicitud — KLYNN',
         html: `
           <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; color: #1A1A1A;">
-            <div style="background: #0A1628; padding: 24px 32px; border-radius: 8px 8px 0 0; text-align: center;">
+            <div style="background: #282625; padding: 24px 32px; border-radius: 8px 8px 0 0; text-align: center;">
               <h1 style="color: white; margin: 0; font-size: 22px; font-weight: 700; letter-spacing: -0.5px;">
-                MagiClean
+                KLYNN
               </h1>
               <p style="color: rgba(255,255,255,0.4); margin: 4px 0 0; font-size: 13px;">
                 Soluciones de limpieza profesional
               </p>
             </div>
             <div style="padding: 40px 32px; border: 1px solid #E5E7EB; border-top: none; border-radius: 0 0 8px 8px;">
-              <h2 style="font-size: 20px; font-weight: 700; margin: 0 0 16px; color: #0A1628;">
+              <h2 style="font-size: 20px; font-weight: 700; margin: 0 0 16px; color: #282625;">
                 Hola, ${safe.nombre}.
               </h2>
               <p style="font-size: 15px; line-height: 1.7; color: #374151; margin: 0 0 16px;">
@@ -281,7 +283,7 @@ export async function POST(req: NextRequest) {
               <p style="font-size: 15px; line-height: 1.7; color: #374151; margin: 0 0 32px;">
                 Mientras tanto, si tienes alguna pregunta urgente, puedes responder directamente a este correo.
               </p>
-              <div style="background: #F5F7FA; padding: 20px 24px; border-radius: 8px; border-left: 3px solid #0076FF;">
+              <div style="background: #F5F4F1; padding: 20px 24px; border-radius: 8px; border-left: 3px solid #D07140;">
                 <p style="font-size: 13px; color: #6B7280; margin: 0 0 4px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">
                   Tu solicitud
                 </p>
@@ -291,7 +293,7 @@ export async function POST(req: NextRequest) {
                 </p>
               </div>
               <p style="margin-top: 40px; font-size: 13px; color: #9CA3AF; text-align: center;">
-                MagiClean · Proveedor B2B de limpieza profesional · México
+                KLYNN · Objetos para la vida diaria
               </p>
             </div>
           </div>
