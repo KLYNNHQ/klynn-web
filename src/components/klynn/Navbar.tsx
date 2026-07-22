@@ -25,8 +25,9 @@ import Wordmark from './Wordmark'
 // navegación definitiva (Inicio · Categorías · Productos · Nosotros ·
 // Contacto) llega en la fase de construcción. /productos se purgó.
 const LINKS = [
-  { href: '/#categorias', label: 'Categorías' },
+  { href: '/#ecosistema', label: 'Categorías' },
   { href: '/#filosofia', label: 'Filosofía' },
+  { href: '/#criterio', label: 'Criterio' },
 ]
 
 export default function Navbar() {

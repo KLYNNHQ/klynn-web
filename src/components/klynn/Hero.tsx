@@ -69,13 +69,12 @@ export default function Hero() {
           </span>
         </div>
 
-        {/* Titular — apoyado sobre la regla.
-            Copy en español (propuesto — sujeto a tu revisión en la fase de
-            construcción). */}
-        <h1 className="k-h1 max-w-[16ch] pb-8 text-[clamp(3rem,8.4vw,7.25rem)] leading-[0.98] tracking-[-0.022em] sm:pb-10">
-          Objetos para
+        {/* Titular — claim de marca, apoyado sobre la regla.
+            COPY PROPUESTO — sujeto a tu revisión. */}
+        <h1 className="k-h1 max-w-[14ch] pb-8 text-[clamp(3rem,8.4vw,7.25rem)] leading-[0.98] tracking-[-0.022em] sm:pb-10">
+          Lo esencial,
           <br />
-          la vida diaria
+          bien hecho
           <span style={{ color: 'var(--color-k-terracotta)' }}>.</span>
         </h1>
 

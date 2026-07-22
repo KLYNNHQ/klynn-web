@@ -1,72 +1,48 @@
 /**
- * Registro de categorías KLYNN.
+ * Registro de categorías KLYNN — las 10 congeladas.
  *
- * KLYNN es una marca de objetos bien diseñados, no una empresa de una sola
- * línea. El registro es la pieza que hace que agregar una categoría no
- * implique tocar ningún componente: se añade una entrada aquí y una regla de
- * color en globals.css, y todo el sistema la absorbe.
+ * KLYNN es una marca de objetos para la vida diaria, no una empresa de una
+ * sola línea. Todas las categorías tienen el mismo peso: ninguna domina, y
+ * CLEAN no es la principal. El color quedó fuera de la superficie por
+ * decisión de marca (llega solo por fotografía real), así que aquí no hay
+ * color: el registro es nombre + descriptor + estado.
  *
- * ── Estado del color ──────────────────────────────────────────────────────
- * El Master Design Manual v1.0 (lámina 06) aprueba acento para CINCO
- * categorías: CLEAN, TECH, HOME, KITCHEN y BATH.
- *
- * STORAGE, PET y WELLNESS todavía NO tienen acento aprobado: usan el neutro
- * del sistema hasta que exista decisión de marca. No se les asigna un color
- * inventado.
- *
- * BATH está aprobada en el manual pero no aparece en la lista de trabajo
- * actual. Se conserva registrada y fuera de navegación (`visible: false`)
- * hasta que se aclare si se mantiene o se absorbe en WELLNESS.
+ * Agregar o reordenar categorías se hace solo aquí; ningún componente cambia.
  */
 
 export type CategoryKey =
-  | 'clean'
-  | 'kitchen'
   | 'home'
-  | 'tech'
+  | 'kitchen'
   | 'storage'
-  | 'pet'
+  | 'clean'
+  | 'tech'
   | 'wellness'
-  | 'bath'
+  | 'outdoor'
+  | 'pet'
+  | 'travel'
+  | 'automotive'
 
 export interface Category {
   key: CategoryKey
-  /** Nombre de marca, siempre en mayúsculas en superficie. */
+  /** Nombre de marca, en mayúsculas en superficie. */
   nombre: string
-  /** Qué resuelve la categoría. Objeto, no industria. */
+  /** Qué territorio cubre. Objeto, no industria. */
   descriptor: string
-  /** El acento existe en el manual. Si es false, hereda el neutro. */
-  accentApproved: boolean
-  /** Tiene catálogo vivo hoy. */
+  /** Tiene catálogo vivo. Hoy ninguna se publica como disponible. */
   activa: boolean
-  /**
-   * Aparece en la superficie pública de esta fase.
-   *
-   * Registrada ≠ publicada. Una marca que enseña siete casillas y seis dicen
-   * "en desarrollo" está anunciando que está vacía. Se publican solo las
-   * categorías con identidad resuelta; el resto vive en la arquitectura y
-   * entra cuando tenga con qué sostenerse.
-   */
-  visible: boolean
 }
 
+// Orden intencional: agrupa la vida de la casa primero, lo personal después,
+// lo que sale de casa al final. No alfabético, no por prioridad comercial.
 export const CATEGORIES: Category[] = [
-  // Publicadas — identidad cromática aprobada. CLEAN encabeza por ser la
-  // única con catálogo vivo; el orden es intencional, no alfabético.
-  { key: 'clean',    nombre: 'KLYNN CLEAN',    descriptor: 'Cuidado de superficies',    accentApproved: true,  activa: true,  visible: true },
-  { key: 'home',     nombre: 'KLYNN HOME',     descriptor: 'Objetos para la casa',      accentApproved: true,  activa: false, visible: true },
-  { key: 'kitchen',  nombre: 'KLYNN KITCHEN',  descriptor: 'Cocina y preparación',      accentApproved: true,  activa: false, visible: true },
-  { key: 'tech',     nombre: 'KLYNN TECH',     descriptor: 'Energía y conectividad',    accentApproved: true,  activa: false, visible: true },
-
-  // Registradas, fuera de superficie. Entran cuando tengan identidad y
-  // catálogo. Publicarlas hoy solo comunicaría vacío.
-  { key: 'bath',     nombre: 'KLYNN BATH',     descriptor: 'Baño',                      accentApproved: true,  activa: false, visible: false },
-  { key: 'storage',  nombre: 'KLYNN STORAGE',  descriptor: 'Orden y almacenamiento',    accentApproved: false, activa: false, visible: false },
-  { key: 'pet',      nombre: 'KLYNN PET',      descriptor: 'Vida con animales',         accentApproved: false, activa: false, visible: false },
-  { key: 'wellness', nombre: 'KLYNN WELLNESS', descriptor: 'Cuidado personal',          accentApproved: false, activa: false, visible: false },
+  { key: 'home',       nombre: 'KLYNN HOME',       descriptor: 'La casa',                  activa: false },
+  { key: 'kitchen',    nombre: 'KLYNN KITCHEN',    descriptor: 'La cocina',                activa: false },
+  { key: 'storage',    nombre: 'KLYNN STORAGE',    descriptor: 'El orden',                 activa: false },
+  { key: 'clean',      nombre: 'KLYNN CLEAN',      descriptor: 'El cuidado',               activa: false },
+  { key: 'tech',       nombre: 'KLYNN TECH',       descriptor: 'La energía',               activa: false },
+  { key: 'wellness',   nombre: 'KLYNN WELLNESS',   descriptor: 'El bienestar',             activa: false },
+  { key: 'outdoor',    nombre: 'KLYNN OUTDOOR',    descriptor: 'El exterior',              activa: false },
+  { key: 'pet',        nombre: 'KLYNN PET',        descriptor: 'La vida con animales',     activa: false },
+  { key: 'travel',     nombre: 'KLYNN TRAVEL',     descriptor: 'El viaje',                 activa: false },
+  { key: 'automotive', nombre: 'KLYNN AUTOMOTIVE', descriptor: 'El auto',                  activa: false },
 ]
-
-/** Las que se publican en esta fase. */
-export const VISIBLE_CATEGORIES = CATEGORIES.filter(c => c.visible)
-
-export const ACTIVE_CATEGORIES = CATEGORIES.filter(c => c.activa)

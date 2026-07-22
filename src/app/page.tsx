@@ -1,16 +1,26 @@
 import Navbar from '@/components/klynn/Navbar'
+import Apertura from '@/components/klynn/Apertura'
 import Hero from '@/components/klynn/Hero'
 import Filosofia from '@/components/klynn/Filosofia'
-import Categorias from '@/components/klynn/Categorias'
+import Ecosistema from '@/components/klynn/Ecosistema'
+import Materiales from '@/components/klynn/Materiales'
 import CTA from '@/components/klynn/CTA'
 import Footer from '@/components/klynn/Footer'
 
 /**
- * Home KLYNN.
+ * Home KLYNN — marca global, 100% en español.
  *
- * Estado tras la purga: quedan las secciones de marca ya alineadas. El
- * Bloque 0 (apertura de marca) y la sección Materiales se construyen en el
- * bloque siguiente; los productos destacados NO vuelven a la home.
+ * Arquitectura aprobada:
+ *   1. Apertura de marca      — qué es KLYNN
+ *   2. Hero                   — el claim
+ *   3. Filosofía              — un mismo criterio
+ *   4. Ecosistema             — las 10 categorías, mismo peso
+ *   5. Diseño / materiales    — cómo se decide un objeto KLYNN
+ *   6. CTA                    — acción institucional
+ *   7. Footer
+ *
+ * No vende productos ni catálogo: vende la marca. Ritmo de tono
+ * claro/oscuro/claro para que la lectura respire.
  */
 
 export default function Home() {
@@ -18,9 +28,11 @@ export default function Home() {
     <>
       <Navbar />
       <main>
+        <Apertura />
         <Hero />
         <Filosofia />
-        <Categorias />
+        <Ecosistema />
+        <Materiales />
         <CTA />
       </main>
       <Footer />
