@@ -1,4 +1,5 @@
 import { Container, Section } from '@/design-system/primitives'
+import Reveal from '@/design-system/Reveal'
 import BrandImage, { hasAsset } from './BrandImage'
 import { siteImages } from '@/config/site-images'
 
@@ -63,7 +64,7 @@ function Reticula() {
 
 function Index() {
   return (
-    <div className="k-rise k-rise-1 mb-auto flex items-center gap-3 pt-28 sm:pt-40">
+    <Reveal className="mb-auto flex items-center gap-3 pt-28 sm:pt-40">
       <span
         aria-hidden
         className="h-[7px] w-[7px]"
@@ -72,25 +73,29 @@ function Index() {
       <span className="k-caption uppercase tracking-[0.28em] text-[var(--color-k-graphite)] opacity-70">
         La marca
       </span>
-    </div>
+    </Reveal>
   )
 }
 
 function Claim() {
   return (
     // COPY PROVISIONAL — el claim definitivo llega en la fase de Copy v1.0.
-    <h1 className="k-rise k-rise-2 k-h1 max-w-[14ch] pb-8 text-[clamp(3rem,8.4vw,7.25rem)] leading-[0.98] tracking-[-0.022em] sm:pb-10">
+    <Reveal
+      as="h1"
+      delay={160}
+      className="k-h1 max-w-[14ch] pb-8 text-[clamp(3rem,8.4vw,7.25rem)] leading-[0.98] tracking-[-0.022em] sm:pb-10"
+    >
       Lo esencial,
       <br />
       bien hecho
       <span style={{ color: 'var(--color-k-terracotta)' }}>.</span>
-    </h1>
+    </Reveal>
   )
 }
 
 function SpecBand() {
   return (
-    <div className="k-rise k-rise-3">
+    <Reveal delay={320}>
       <div className="h-px w-full bg-[var(--color-k-gray-light)]" />
       <div className="flex flex-col gap-6 py-8 sm:flex-row sm:items-center sm:justify-between">
         <ul className="flex flex-wrap items-center gap-x-6 gap-y-3 sm:gap-x-12">
@@ -116,7 +121,7 @@ function SpecBand() {
           <span aria-hidden className="block h-px w-10 bg-current" />
         </span>
       </div>
-    </div>
+    </Reveal>
   )
 }
 

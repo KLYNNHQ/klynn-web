@@ -1,4 +1,5 @@
 import { Container, Section } from '@/design-system/primitives'
+import Reveal from '@/design-system/Reveal'
 
 /**
  * Apertura de marca — primer bloque de la página.
@@ -21,7 +22,7 @@ export default function Apertura() {
   return (
     <Section rhythm="normal" tone="light" className="relative pt-[120px] sm:pt-[132px]">
       <Container>
-        <div className="flex items-center gap-3">
+        <Reveal className="flex items-center gap-3">
           <span
             aria-hidden
             className="h-[7px] w-[7px]"
@@ -30,13 +31,13 @@ export default function Apertura() {
           <span className="k-caption uppercase tracking-[0.28em] text-[var(--color-k-graphite)] opacity-60">
             KLYNN
           </span>
-        </div>
+        </Reveal>
 
         {/* Columna ancha (34rem) + tamaño moderado (máx 1.75rem en desktop):
             cada frase se lee completa, en una o dos líneas, sin fragmentarse.
             Muy por debajo del Hero (116px) para que no compitan. El mínimo del
             clamp conserva la fuerza en móvil. */}
-        <div className="mt-12 max-w-[34rem] space-y-3">
+        <Reveal delay={120} className="mt-12 max-w-[34rem] space-y-3">
           {LINEAS.map((linea, i) => (
             <p
               key={i}
@@ -46,7 +47,7 @@ export default function Apertura() {
               {linea}
             </p>
           ))}
-        </div>
+        </Reveal>
       </Container>
     </Section>
   )
