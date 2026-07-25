@@ -1,4 +1,6 @@
 import { Container, Section } from '@/design-system/primitives'
+import Reveal from '@/design-system/Reveal'
+import RevealGroup from '@/design-system/RevealGroup'
 import { CATEGORIES } from '@/lib/klynn/categories'
 
 /**
@@ -12,13 +14,16 @@ import { CATEGORIES } from '@/lib/klynn/categories'
  * Sin color, sin fotografía, sin tarjetas. La estructura la da el ritmo
  * vertical y la regla fina entre filas. Escala a cualquier número de
  * categorías sin cambiar de forma.
+ *
+ * Movimiento: encabezado con <Reveal>; las filas con <RevealGroup>, que las
+ * revela escalonadas con un solo observer y la cadencia del token.
  */
 
 export default function Ecosistema() {
   return (
     <Section id="ecosistema" rhythm="loose" tone="light">
       <Container>
-        <div className="max-w-[40ch]">
+        <Reveal className="max-w-[40ch]">
           <div className="flex items-center gap-3">
             <span
               aria-hidden
@@ -32,13 +37,13 @@ export default function Ecosistema() {
           <h2 className="k-h2 mt-14 text-[clamp(1.75rem,4.4vw,3.25rem)] leading-[1.1] tracking-[-0.018em]">
             Diez categorías. Un solo estándar.
           </h2>
-        </div>
+        </Reveal>
 
-        <ul className="mt-20 border-t border-[var(--color-k-border)]">
+        <RevealGroup as="ul" className="mt-20 border-t border-[var(--color-k-border)]">
           {CATEGORIES.map(c => (
             <li key={c.key} className="group border-b border-[var(--color-k-border)]">
               <div className="grid grid-cols-[1fr_auto] items-baseline gap-x-6 gap-y-1 py-7 sm:grid-cols-[minmax(0,1fr)_minmax(0,20ch)_auto] sm:py-9">
-                <h3 className="k-h3 text-[clamp(1.375rem,3.2vw,2.25rem)] leading-[1.1] tracking-[-0.01em] text-[var(--color-k-graphite)] transition-opacity duration-300 sm:group-hover:opacity-100">
+                <h3 className="k-h3 k-ui-transition-opacity text-[clamp(1.375rem,3.2vw,2.25rem)] leading-[1.1] tracking-[-0.01em] text-[var(--color-k-graphite)] sm:group-hover:opacity-100">
                   {c.nombre}
                 </h3>
                 <p className="k-body order-3 col-span-2 text-[0.9375rem] text-[var(--color-k-gray-mid)] sm:order-none sm:col-span-1 sm:text-[1rem]">
@@ -50,7 +55,7 @@ export default function Ecosistema() {
               </div>
             </li>
           ))}
-        </ul>
+        </RevealGroup>
       </Container>
     </Section>
   )

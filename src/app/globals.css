@@ -192,10 +192,17 @@ body {
 /* Tokens del sistema — fuente única de duración, distancia, easing y cadencia.
  * Los valores por defecto de <Reveal> salen de aquí, nunca hardcodeados. */
 :root {
-  --k-motion-duration: 900ms;
+  --k-motion-duration: 900ms;      /* entrada (Reveal/RevealGroup) */
+  --k-motion-duration-ui: 220ms;   /* micro-interacciones (hover/color) */
   --k-motion-distance: 14px;
   --k-motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
-  --k-motion-stagger: 140ms;
+  --k-motion-stagger: 140ms;       /* cadencia entre piezas de un grupo */
+}
+
+/* Transiciones de interacción desde tokens — para no hardcodear duración/easing
+ * en los componentes (invariante token-only aplicado al trabajo nuevo). */
+.k-ui-transition-opacity {
+  transition: opacity var(--k-motion-duration-ui) var(--k-motion-ease);
 }
 
 /* Estado base: VISIBLE. El estado oculto solo aplica cuando (a) hay scripting

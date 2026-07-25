@@ -1,4 +1,6 @@
 import { Container, Section } from '@/design-system/primitives'
+import Reveal from '@/design-system/Reveal'
+import RevealGroup from '@/design-system/RevealGroup'
 
 /**
  * Diseño, materiales y durabilidad.
@@ -32,7 +34,7 @@ export default function Materiales() {
   return (
     <Section id="criterio" rhythm="loose" tone="raised">
       <Container>
-        <div className="max-w-[44ch]">
+        <Reveal className="max-w-[44ch]">
           <div className="flex items-center gap-3">
             <span
               aria-hidden
@@ -46,9 +48,9 @@ export default function Materiales() {
           <h2 className="k-h2 mt-14 text-[clamp(1.75rem,4.4vw,3.25rem)] leading-[1.1] tracking-[-0.018em]">
             Cómo se decide un objeto KLYNN.
           </h2>
-        </div>
+        </Reveal>
 
-        <ul className="mt-20 grid gap-x-12 gap-y-14 sm:grid-cols-3">
+        <RevealGroup as="ul" className="mt-20 grid gap-x-12 gap-y-14 sm:grid-cols-3">
           {CRITERIOS.map(c => (
             <li key={c.titulo}>
               <span
@@ -61,7 +63,7 @@ export default function Materiales() {
               </p>
             </li>
           ))}
-        </ul>
+        </RevealGroup>
       </Container>
     </Section>
   )

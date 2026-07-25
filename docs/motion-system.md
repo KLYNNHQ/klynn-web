@@ -79,22 +79,80 @@ contenido: sirve a cualquier sección o página.
 | `threshold` | `number` 0–1 | `0.15` | ✅ | Fracción visible que dispara el revelado. |
 | `once` | `boolean` | `true` | ✅ | Revelar una vez vs. re-animar al reentrar. |
 | `disabled` | `boolean` | `false` | ✅ | Bypass: render estático, sin movimiento. |
-| `stagger` | `number` (ms) | token | 🏗️ Reservada | Cadencia entre hijos directos. API fija; orquestación de grupo se completa cuando se use en varias piezas (Fase 3). |
+| `stagger` | `number` (ms) | token | ⚠️ Inerte | Superada por `RevealGroup`. Se conserva en la API por gobernanza (la Fase 2 no se reabre por mejora), pero no se usa. Ver Architecture Debt. |
 
 **Notas de uso**
-- Los valores por defecto vienen de los tokens; solo se pasa una prop cuando se
-  quiere desviar del sistema.
-- Para escalonar hoy varias piezas, se usan instancias con `delay` creciente
-  (p. ej. Hero: 0 / 160 / 320 ms); `stagger` automatizará esto más adelante.
 - `as` permite mantener la semántica (`h1`, `p`, `section`) sin envoltorios extra.
+- Para escalonar varias piezas se usa `RevealGroup` (abajo), no `delay` a mano.
 
 ---
 
-## Adopción actual (v1)
+## Coordinador `RevealGroup` — contrato de API
 
-- **Apertura** — eyebrow + bloque de frases.
-- **Hero** — índice, claim y banda de especificación (migrado desde la entrada
-  on-load de la Fase 1 a revelado on-scroll).
-- **Filosofía** — eyebrow, titular y cuerpo.
+`import RevealGroup from '@/design-system/RevealGroup'`
 
-El resto de secciones adoptan la primitiva a medida que se completan (Fase 3).
+Revela un CONJUNTO de piezas de forma escalonada con **un solo**
+`IntersectionObserver`. Es la molécula; `Reveal` es el átomo. Decora sus
+**hijos directos** con `k-reveal` (+ `is-visible` al entrar) y una cadencia
+`--k-reveal-delay = calc(var(--k-motion-stagger) * paso)`. Reutiliza la regla
+CSS `.k-reveal.is-visible`: no necesita CSS nuevo.
+
+| Prop | Tipo | Default | Descripción |
+|---|---|---|---|
+| `as` | `ElementType` | `'div'` | Etiqueta contenedora (p. ej. `'ul'`). |
+| `direction` | `'up'\|'down'\|'left'\|'right'\|'none'` | `'up'` | Sentido de entrada de cada hijo. |
+| `threshold` | `number` 0–1 | `0.15` | Fracción visible que dispara el grupo. |
+| `once` | `boolean` | `true` | Revelar una vez vs. re-animar al reentrar. |
+| `disabled` | `boolean` | `false` | Bypass: render estático. |
+
+- **Token-only:** la cadencia sale del token `--k-motion-stagger`; el índice es
+  una posición, no una magnitud. Ninguna duración/delay se escribe a mano.
+- **Un observer por grupo:** solo el contenedor se observa; los hijos se revelan
+  por la clase, no cada uno con su propio observer.
+- **Tope de escalonado:** a partir del 7.º hijo comparten paso (no acumulan
+  retraso perceptible en listas largas).
+- **Refs y semántica intactos:** `cloneElement` solo fusiona `className`/`style`
+  y añade `data-direction`; no inyecta `ref` ni cambia el tipo del hijo.
+
+### Transiciones de interacción (hover/color)
+
+Usan la utilidad token-only `.k-ui-transition-opacity` (duración/easing desde
+`--k-motion-duration-ui` / `--k-motion-ease`), nunca `duration-*`/`transition-*`
+de Tailwind hardcodeados.
+
+---
+
+## Regla de gobernanza (permanente)
+
+> Una fase cerrada solo se reabre por **bug, regresión, accesibilidad,
+> rendimiento demostrado o seguridad**; nunca únicamente por una mejora
+> arquitectónica.
+
+Por esta regla, `RevealGroup` se aplica solo a las secciones de su fase; el acto
+de apertura (Fase 2, cerrada) no se migró aunque fuera más "limpio".
+
+---
+
+## Architecture Debt (token-only)
+
+El invariante token-only se **adopta como política** y se **aplica al trabajo
+nuevo**. Quedan como deuda rastreada, a remediar en un pase dedicado:
+
+- **Acto de apertura** (`Hero`/`Apertura`/`Filosofía`): usa `delay` numérico
+  hardcodeado y las props numéricas de `Reveal`.
+- **API numérica de `Reveal`** (`delay`/`duration`/`distance`) y su prop
+  `stagger` inerte: se retiran cuando se remedie el acto de apertura.
+- **Transiciones incidentales** de `Navbar`, `Footer` y primitivas (`Action`):
+  aún con `duration-*`/`transition-*` de Tailwind.
+
+---
+
+## Adopción actual
+
+- **Reveal (átomo):** encabezados de `Ecosistema` y `Materiales`; acto de
+  apertura (Fase 2).
+- **RevealGroup (coordinador):** filas de `Ecosistema` (10), criterios de
+  `Materiales` (3), bloque de `CTA`.
+- **Footer:** estático por decisión (el movimiento no refuerza contenido ahí).
+
+El resto de superficies adoptan el sistema a medida que se construyen.
