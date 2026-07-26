@@ -1,46 +1,50 @@
 import type { Metadata } from 'next'
-import { Montserrat, Playfair_Display } from 'next/font/google'
+import { Inter, Inter_Tight } from 'next/font/google'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import CookieBanner from '@/components/CookieBanner'
 import ConsentAwareAnalytics from '@/components/ConsentAwareAnalytics'
 import { siteUrl } from '@/lib/config'
-import { ACTIVE_SKU_COUNT } from '@/lib/products-stats'
 import './globals.css'
 
-const montserrat = Montserrat({
+/* --- Tipografía KLYNN ---------------------------------------------------
+ * Sustitutas de "KLYNN Display" / "KLYNN Text" (lámina 07 del manual), que
+ * no existen como archivo de fuente en KLYNN_OS. Los pesos cargados son
+ * exactamente los que la lámina especifica: Light 300 (caption),
+ * Regular 400 (cuerpo), Medium 500 (H3), Bold 700 (H1/H2/botón).
+ * Al llegar la fuente oficial se sustituyen aquí y en globals.css. */
+const interTight = Inter_Tight({
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700', '900'],
-  variable: '--font-montserrat',
-  display: 'swap',
-  preload: false,
-})
-
-const playfair = Playfair_Display({
-  subsets: ['latin'],
-  weight: ['400', '700'],
-  style: ['normal', 'italic'],
-  variable: '--font-playfair',
+  weight: ['500', '700'],
+  variable: '--font-inter-tight',
   display: 'swap',
   preload: true,
 })
 
+const inter = Inter({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '700'],
+  variable: '--font-inter',
+  display: 'swap',
+  preload: true,
+})
+
+const TITLE = 'KLYNN — Objetos bien diseñados para la vida diaria'
+const DESCRIPTION =
+  'KLYNN diseña objetos para la vida diaria bajo un mismo criterio: función primero, hechos para durar. Cuidado de superficies, casa, cocina y energía.'
+
 export const metadata: Metadata = {
-  title: 'MagiClean — Proveedor B2B de Limpieza Profesional en México',
-  description:
-    `Fibras, sistemas de mop y soluciones de limpieza profesional para distribuidores, retail, HORECA e institucional. Tecnología NeoShield™ antibacterial. Líderes en MercadoLibre y Amazon · ${ACTIVE_SKU_COUNT} soluciones profesionales · México y LATAM.`,
+  title: TITLE,
+  description: DESCRIPTION,
   keywords: [
-    'fibras de limpieza profesional',
-    'sistemas de mop',
-    'proveedor HORECA México',
-    'distribuidor productos de limpieza',
-    'fibra antibacterial NeoShield™',
-    'MagiClean México',
-    'limpieza industrial',
-    'productos de limpieza B2B',
+    'KLYNN',
+    'diseño de producto',
+    'objetos para el hogar',
+    'cuidado de superficies',
+    'marca mexicana de diseño',
   ],
-  authors: [{ name: 'Prolim BH, SA de CV' }],
-  creator: 'MagiClean',
-  publisher: 'MagiClean',
+  authors: [{ name: 'KLYNN' }],
+  creator: 'KLYNN',
+  publisher: 'KLYNN',
   metadataBase: new URL(siteUrl),
   alternates: {
     canonical: '/',
@@ -49,17 +53,15 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'es_MX',
     url: siteUrl,
-    siteName: 'MagiClean',
-    title: 'MagiClean — Proveedor B2B de Limpieza Profesional en México',
-    description:
-      'Fibras, sistemas de mop y soluciones de limpieza profesional para distribuidores, retail, HORECA e institucional en México y LATAM.',
+    siteName: 'KLYNN',
+    title: TITLE,
+    description: DESCRIPTION,
     // Image auto-populated from src/app/opengraph-image.tsx (next/og ImageResponse).
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'MagiClean — Proveedor B2B de Limpieza Profesional en México',
-    description:
-      'Fibras, sistemas de mop y soluciones para distribuidores, retail, HORECA e institucional.',
+    title: TITLE,
+    description: DESCRIPTION,
     // Twitter image also auto-populated from src/app/opengraph-image.tsx.
   },
   robots: {
@@ -72,33 +74,36 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
+  manifest: '/manifest.json',
 }
 
+/**
+ * JSON-LD de Organization.
+ *
+ * Solo se declara lo verificable. `telephone`, `email`, `address` y `sameAs`
+ * quedan FUERA hasta que existan datos oficiales de KLYNN: publicar un dato
+ * de contacto heredado o inventado en datos estructurados lo propaga a
+ * Google Business y buscadores, y corregirlo después es lento.
+ *
+ * Pendiente de alta: teléfono, correo legal, domicilio fiscal, redes.
+ */
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@type': ['Organization', 'LocalBusiness'],
-  name: 'Prolim BH, SA de CV',
-  legalName: 'Prolim BH, SA de CV',
+  '@type': 'Organization',
+  name: 'KLYNN',
   url: siteUrl,
-  logo: `${siteUrl}/images/logo.svg`,
-  telephone: '+525571553635',
-  email: 'datos@magicleanproducts.com',
-  address: {
-    '@type': 'PostalAddress',
-    streetAddress: 'Calle 3, No. 47, Local 109, Col. Industrial Alce Blanco',
-    addressLocality: 'Naucalpan de Juárez',
-    addressRegion: 'Estado de México',
-    postalCode: '53370',
-    addressCountry: 'MX',
-  },
   brand: {
     '@type': 'Brand',
-    name: 'MagiClean',
-    logo: `${siteUrl}/images/logo.svg`,
+    name: 'KLYNN',
   },
-  sameAs: [
-    'https://www.tiktok.com/@magicleanmx',
-  ],
+}
+
+const webSiteLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'KLYNN',
+  url: siteUrl,
+  inLanguage: 'es',
 }
 
 export default function RootLayout({
@@ -107,11 +112,19 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="es" className={`${montserrat.variable} ${playfair.variable}`}>
+    <html
+      lang="es"
+      className={`${interTight.variable} ${inter.variable}`}
+    >
       <body className="font-sans antialiased">
+        <a href="#contenido" className="skip-link">Saltar al contenido</a>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteLd) }}
         />
         {children}
         <CookieBanner />

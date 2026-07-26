@@ -3,12 +3,21 @@
 > **Este archivo se lee PRIMERO, antes de cualquier memoria interna o asunción.**
 > **Si tu memoria contradice este archivo, el archivo manda.**
 
+> **🔄 Rebranding técnico en curso: MagiClean → KLYNN.** Una primera fase renombró
+> solo identificadores internos (nombre de paquete, comentarios técnicos, docs) y
+> creó `src/config/` (`@/config/brand`) como fuente única de marca, **aún sin
+> conectar a componentes**. El branding visible, SEO, OpenGraph, JSON-LD, dominios,
+> correos públicos, assets/logos/favicons, NeoShield™ y la razón social
+> (Prolim BH, SA de CV) **NO se han tocado** — se migran en la fase visual.
+> Estado y pendientes: `TODO_REBRANDING.md`. Mientras tanto, las reglas de marca
+> de abajo siguen describiendo el estado ACTUAL (MagiClean).
+
 ## Dónde estás
 
 - **Proyecto:** MagiClean landing page
 - **Tipo:** Next.js 16 app, frontend público B2B
-- **Ubicación correcta:** `/Users/jacobolevy/Desktop/magicclean`
-- **NO es:** `/Projects_magiclean/magiclean-crm` (ese es otro proyecto, el CRM interno, fuera de scope)
+- **Ubicación correcta:** `/Users/jacobolevy/Desktop/klynn-landing`
+- **NO es:** `/Users/jacobolevy/Projects/klynn-crm` (ese es otro proyecto, el CRM interno, fuera de scope)
 - **Dueño del proyecto:** Jacobo Levy, fundador de Prolim BH, SA de CV
 
 ## Identidad: empresa vs marca (CRÍTICO)

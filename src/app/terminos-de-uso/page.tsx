@@ -1,12 +1,12 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer'
+import Navbar from '@/components/klynn/Navbar'
+import Footer from '@/components/klynn/Footer'
 
 export const metadata: Metadata = {
-  title: 'Términos de Uso — Prolim BH, SA de CV',
+  title: 'Términos de Uso — KLYNN',
   description:
-    'Términos y condiciones de uso del sitio web magiclean.mx, operado por Prolim BH, SA de CV (titular de la marca MagiClean®).',
+    'Términos y condiciones de uso del sitio web klynn.com.mx, operado por KLYNN (titular de la marca KLYNN).',
   robots: { index: true, follow: true },
 }
 
@@ -15,9 +15,9 @@ export default function TerminosDeUso() {
     <>
       <Navbar />
 
-      <main className="bg-white min-h-screen">
+      <main id="contenido" tabIndex={-1} className="bg-white min-h-screen">
         {/* Header */}
-        <div className="bg-[#0A1628] text-white pt-32 pb-14 px-6">
+        <div className="bg-[#282625] text-white pt-32 pb-14 px-6">
           <div className="max-w-3xl mx-auto">
             <p className="text-xs font-semibold tracking-widest text-white/50 uppercase mb-3">
               Aviso Legal
@@ -26,7 +26,7 @@ export default function TerminosDeUso() {
               Términos de Uso
             </h1>
             <p className="text-sm text-white/50 font-normal">
-              Condiciones generales de uso del sitio web magiclean.mx ·{' '}
+              Condiciones generales de uso del sitio web klynn.com.mx ·{' '}
               Última actualización:{' '}
               <time dateTime="2025-04-13">13 de abril de 2025</time>
             </p>
@@ -34,7 +34,7 @@ export default function TerminosDeUso() {
         </div>
 
         {/* Body */}
-        <div className="max-w-3xl mx-auto px-6 py-16 space-y-12 text-[#1A1A1A]">
+        <div className="max-w-3xl mx-auto px-6 py-16 space-y-12 text-[#282625]">
 
           {/* 1. Aceptación */}
           <section>
@@ -43,7 +43,7 @@ export default function TerminosDeUso() {
             </h2>
             <p className="text-sm font-normal leading-relaxed text-ink-legal">
               Al acceder y utilizar este sitio web operado por{' '}
-              <strong className="font-semibold text-[#1A1A1A]">Prolim BH, SA de CV</strong>,
+              <strong className="font-semibold text-[#282625]">KLYNN</strong>,
               usted acepta quedar vinculado por los presentes Términos de Uso. Si no está de
               acuerdo con alguna de estas condiciones, le pedimos abstenerse de utilizar el sitio.
             </p>
@@ -55,11 +55,10 @@ export default function TerminosDeUso() {
               2. Objeto del sitio
             </h2>
             <p className="text-sm font-normal leading-relaxed text-ink-legal">
-              Este sitio web tiene como finalidad presentar el portafolio de productos de
-              limpieza profesional de Prolim BH, SA de CV y facilitar el contacto con
-              distribuidores, clientes de canal retail, institucional y HORECA en México y LATAM.
-              El sitio es de carácter <strong className="font-semibold">informativo y comercial B2B</strong>;
-              no constituye una tienda en línea con transacciones directas al consumidor final.
+              Este sitio web tiene como finalidad presentar la marca KLYNN y su portafolio de
+              objetos para la vida diaria, y facilitar el contacto comercial.
+              El sitio es de carácter <strong className="font-semibold">informativo</strong>;
+              no constituye una tienda en línea con transacciones directas.
             </p>
           </section>
 
@@ -71,23 +70,22 @@ export default function TerminosDeUso() {
             <p className="text-sm font-normal leading-relaxed text-ink-legal mb-3">
               Todos los contenidos de este sitio —incluyendo textos, imágenes, diseños,
               íconos y código fuente— son propiedad de{' '}
-              <strong className="font-semibold">Prolim BH, SA de CV</strong>{' '}
+              <strong className="font-semibold">KLYNN</strong>{' '}
               o de sus licenciantes, y están protegidos por la Ley Federal del Derecho
               de Autor y demás legislación aplicable en México.
             </p>
             <p className="text-sm font-normal leading-relaxed text-ink-legal mb-3">
-              <strong className="font-semibold">MagiClean®</strong> es marca registrada
-              ante el Instituto Mexicano de la Propiedad Industrial (IMPI) a nombre de
-              Prolim BH, SA de CV.{' '}
-              <strong className="font-semibold">NeoShield™</strong> es marca en proceso
-              de registro ante el IMPI a nombre de Prolim BH, SA de CV. Cualquier uso no
-              autorizado de estas marcas constituye una violación a la Ley Federal de
-              Protección a la Propiedad Industrial.
+              <strong className="font-semibold">KLYNN</strong> y sus signos distintivos son
+              marcas de KLYNN Cualquier uso no autorizado constituye una
+              violación a la Ley Federal de Protección a la Propiedad Industrial.
+              {/* PENDIENTE: precisar el estatus de registro ante el IMPI cuando exista
+                  el trámite a nombre de la entidad definitiva. No se afirma un registro
+                  que aún no consta. */}
             </p>
             <p className="text-sm font-normal leading-relaxed text-ink-legal">
               Queda estrictamente prohibida la reproducción, distribución, modificación o
               uso comercial de cualquier contenido, marca o signo distintivo sin
-              autorización previa y por escrito de Prolim BH, SA de CV.
+              autorización previa y por escrito de KLYNN
             </p>
           </section>
 
@@ -105,7 +103,7 @@ export default function TerminosDeUso() {
               <li>Intentar acceder de forma no autorizada a sistemas o bases de datos.</li>
               <li>Enviar spam, contenido malicioso o realizar ataques informáticos.</li>
               <li>Reproducir o scrappear contenido de forma automatizada sin permiso.</li>
-              <li>Suplantar la identidad de MagiClean o de terceros.</li>
+              <li>Suplantar la identidad de KLYNN o de terceros.</li>
             </ul>
           </section>
 
@@ -117,7 +115,7 @@ export default function TerminosDeUso() {
             <p className="text-sm font-normal leading-relaxed text-ink-legal">
               El envío de un formulario de contacto o cotización a través de este sitio no
               constituye la aceptación de un pedido ni la celebración de un contrato.
-              Prolim BH, SA de CV se reserva el derecho de aceptar o rechazar cualquier
+              KLYNN se reserva el derecho de aceptar o rechazar cualquier
               solicitud comercial. Las propuestas enviadas por nuestro equipo tendrán validez
               según los términos indicados en cada cotización formal.
             </p>
@@ -129,7 +127,7 @@ export default function TerminosDeUso() {
               6. Limitación de responsabilidad
             </h2>
             <p className="text-sm font-normal leading-relaxed text-ink-legal mb-3">
-              Prolim BH, SA de CV no será responsable por:
+              KLYNN no será responsable por:
             </p>
             <ul className="list-disc list-inside text-sm font-normal text-ink-legal space-y-1.5 leading-relaxed ml-1">
               <li>Daños derivados del uso o imposibilidad de uso del sitio.</li>
@@ -150,7 +148,7 @@ export default function TerminosDeUso() {
             </h2>
             <p className="text-sm font-normal leading-relaxed text-ink-legal">
               Este sitio puede contener enlaces a plataformas de terceros (MercadoLibre,
-              Amazon, redes sociales). Prolim BH, SA de CV no controla ni se responsabiliza
+              Amazon, redes sociales). KLYNN no controla ni se responsabiliza
               por el contenido, políticas de privacidad o prácticas de dichos sitios. El acceso
               a estos enlaces es bajo responsabilidad del usuario.
             </p>
@@ -177,7 +175,7 @@ export default function TerminosDeUso() {
               9. Modificaciones
             </h2>
             <p className="text-sm font-normal leading-relaxed text-ink-legal">
-              Prolim BH, SA de CV se reserva el derecho de modificar estos Términos de
+              KLYNN se reserva el derecho de modificar estos Términos de
               Uso en cualquier momento. Los cambios entrarán en vigor en el momento de su
               publicación en este sitio. El uso continuado del sitio después de publicarse
               las modificaciones implica la aceptación de los nuevos términos.
@@ -185,32 +183,22 @@ export default function TerminosDeUso() {
           </section>
 
           {/* Contacto */}
-          <div className="bg-[#F5F7FA] rounded-xl p-6 border border-[#E8EAED]">
-            <p className="text-xs font-semibold tracking-widest text-[#0076FF] uppercase mb-3">
+          <div className="bg-[#F5F4F1] rounded-xl p-6 border border-[#E8EAED]">
+            <p className="text-xs font-semibold tracking-widest text-[#282625] uppercase mb-3">
               Contacto legal
             </p>
             <p className="text-sm font-normal text-ink-legal leading-relaxed">
-              Para consultas sobre estos términos, escríbanos a{' '}
-              <a
-                href="mailto:datos@magicleanproducts.com"
-                className="text-[#0076FF] hover:underline font-medium"
-              >
-                datos@magicleanproducts.com
-              </a>{' '}
-              o llámenos al{' '}
-              <a href="tel:5571553635" className="text-[#0076FF] hover:underline font-medium">
-                55 7155 3635
-              </a>
-              .
+              Los datos de contacto para consultas sobre estos términos se publicarán
+              una vez constituida la entidad legal.
             </p>
           </div>
 
           {/* Nav bottom */}
           <div className="pt-4 flex flex-wrap gap-4 text-sm">
-            <Link href="/" className="text-[#0076FF] hover:underline font-medium">
+            <Link href="/" className="text-[#282625] hover:underline font-medium">
               ← Volver al inicio
             </Link>
-            <Link href="/aviso-de-privacidad" className="text-[#0076FF] hover:underline font-medium">
+            <Link href="/aviso-de-privacidad" className="text-[#282625] hover:underline font-medium">
               Aviso de privacidad →
             </Link>
           </div>

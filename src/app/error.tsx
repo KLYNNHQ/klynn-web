@@ -15,28 +15,27 @@ export default function Error({
   }, [error])
 
   return (
-    <main className="min-h-screen bg-[#0A1628] flex items-center justify-center px-6">
-      <div className="max-w-lg text-center text-white">
-        <p className="text-sm uppercase tracking-[0.2em] text-[#0076FF] mb-4">
-          Error
-        </p>
-        <h1 className="text-3xl md:text-4xl font-bold mb-4">
-          Algo salió mal.
+    <main id="contenido" tabIndex={-1} className="flex min-h-screen items-center justify-center bg-[var(--color-k-graphite)] px-6">
+      <div className="max-w-lg text-center text-[var(--color-k-white)]">
+        <p className="k-caption mb-4 uppercase tracking-[0.24em] opacity-50">Error</p>
+        <h1 className="k-h2 mb-4 text-[clamp(1.75rem,4vw,2.6875rem)] leading-[1.1]">
+          Algo salió mal
+          <span style={{ color: 'var(--color-k-terracotta)' }}>.</span>
         </h1>
-        <p className="text-white/70 mb-8">
-          Tuvimos un problema al cargar esta sección. Intenta de nuevo o
-          contáctanos si el error persiste.
+        <p className="k-body mb-10 opacity-60">
+          Tuvimos un problema al cargar esta sección. Intenta de nuevo o contáctanos
+          si el error persiste.
         </p>
-        <div className="flex flex-col sm:flex-row gap-3 justify-center">
+        <div className="flex flex-col justify-center gap-3 sm:flex-row">
           <button
             onClick={reset}
-            className="bg-[#0076FF] hover:bg-[#0052CC] text-white font-semibold px-6 py-3 rounded-lg transition-colors"
+            className="k-button bg-[var(--color-k-white)] px-8 py-4 text-[var(--color-k-graphite)] transition-opacity hover:opacity-90"
           >
             Reintentar
           </button>
           <Link
             href="/"
-            className="border border-white/20 hover:border-white/40 text-white font-semibold px-6 py-3 rounded-lg transition-colors"
+            className="k-button border border-white/25 px-8 py-4 text-[var(--color-k-white)] transition-colors hover:border-white/50"
           >
             Volver al inicio
           </Link>

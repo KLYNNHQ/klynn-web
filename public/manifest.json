@@ -1,11 +1,11 @@
 {
-  "name": "MagiClean",
-  "short_name": "MagiClean",
-  "description": "Limpieza profesional con tecnología NeoShield™",
+  "name": "KLYNN",
+  "short_name": "KLYNN",
+  "description": "Objetos bien diseñados para la vida diaria.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#FFFFFF",
-  "theme_color": "#0076FF",
+  "background_color": "#F5F4F1",
+  "theme_color": "#282625",
   "icons": [
     {
       "src": "/icon-192.png",
