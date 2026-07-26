@@ -1,25 +1,36 @@
 import { Container, Section } from '@/design-system/primitives'
 import Reveal from '@/design-system/Reveal'
 import RevealGroup from '@/design-system/RevealGroup'
-import { CATEGORIES } from '@/lib/klynn/categories'
+import MediaSlot from './MediaSlot'
+import { siteImages } from '@/config/site-images'
+import type { BrandImageAsset } from '@/config/site-images'
 
 /**
- * El universo KLYNN — categorías con foco y disciplina.
+ * §5 — El universo KLYNN. Categorías como universos comerciales, no como lista.
  *
- * NO se presentan diez categorías idénticas en "Próximamente" (eso parecería
- * dispersión). Se distinguen tres niveles: punto de partida (CLEAN), expansión
- * prevista (HOME, KITCHEN, STORAGE) y visión de largo plazo (el resto). La
- * coherencia viene del criterio, no de la categoría.
+ * Cinco categorías prioritarias con imagen editorial reconocible (misma
+ * dirección de arte). Las futuras aparecen SOLO en texto, con menor jerarquía,
+ * bajo "EN EL HORIZONTE": sin "Próximamente", sin fechas y sin sugerir
+ * disponibilidad (en categories.ts todas están `activa: false`).
  *
- * HIPÓTESIS PROVISIONAL Y EDITABLE — el reparto por nivel se confirma con el
- * dueño. No se afirma que las categorías futuras ya operen.
+ * El id "ecosistema" se conserva: es el ancla del enlace "Categorías" del nav.
  */
 
-const byKey = Object.fromEntries(CATEGORIES.map(c => [c.key, c]))
+interface Tile {
+  nombre: string
+  descriptor: string
+  asset: BrandImageAsset
+}
 
-const INICIO = byKey['clean']
-const EXPANSION = ['home', 'kitchen', 'storage'].map(k => byKey[k])
-const VISION = ['tech', 'pet', 'wellness', 'outdoor', 'automotive', 'travel'].map(k => byKey[k])
+const PRINCIPALES: Tile[] = [
+  { nombre: 'CLEAN', descriptor: 'Cuidado mejor resuelto.', asset: siteImages.categoryClean },
+  { nombre: 'HOME', descriptor: 'Esenciales para vivir.', asset: siteImages.categoryHome },
+  { nombre: 'KITCHEN', descriptor: 'Función todos los días.', asset: siteImages.categoryKitchen },
+  { nombre: 'STORAGE', descriptor: 'Orden que permanece.', asset: siteImages.categoryStorage },
+  { nombre: 'TECH', descriptor: 'Tecnología sin ruido.', asset: siteImages.categoryTech },
+]
+
+const HORIZONTE = ['PET', 'WELLNESS', 'OUTDOOR', 'AUTOMOTIVE', 'TRAVEL']
 
 export default function Ecosistema() {
   return (
@@ -35,61 +46,45 @@ export default function Ecosistema() {
           <h2 className="k-h2 mt-14 text-[clamp(1.75rem,4.4vw,3.25rem)] leading-[1.1] tracking-[-0.018em]">
             Un estándar. Muchas categorías.
           </h2>
-          <p className="k-body mt-10 max-w-[44ch] text-[1.0625rem] leading-[1.75] text-[var(--color-k-graphite)] opacity-70">
-            La categoría cambia. El criterio nunca. Empezamos con foco y crecemos
-            con disciplina: cada categoría entra solo cuando el estándar puede
-            sostenerla.
+          <p className="k-body mt-8 max-w-[42ch] text-[1.0625rem] leading-[1.75] text-[var(--color-k-graphite)] opacity-70">
+            Empezamos con foco y crecemos con disciplina.
           </p>
         </Reveal>
 
-        {/* Nivel 1 — Punto de partida: CLEAN, con protagonismo. */}
-        <Reveal className="mt-16 border-t border-[var(--color-k-graphite)] pt-8 sm:mt-24">
-          <div className="flex items-center gap-3">
-            <span aria-hidden className="h-[6px] w-[6px]" style={{ background: 'var(--color-k-terracotta)' }} />
-            <span className="k-caption uppercase tracking-[0.24em] text-[var(--color-k-graphite)] opacity-70">
-              Punto de partida
-            </span>
-          </div>
-          <div className="mt-6 grid grid-cols-1 items-baseline gap-x-8 gap-y-2 sm:grid-cols-[minmax(0,1fr)_auto]">
-            <h3 className="k-h2 text-[clamp(2rem,5vw,3.5rem)] leading-[1.02] tracking-[-0.02em] text-[var(--color-k-graphite)]">
-              {INICIO.nombre}
-            </h3>
-            <p className="k-body text-[1.0625rem] text-[var(--color-k-ink-muted-aa)] sm:text-right">
-              {INICIO.descriptor} · La primera categoría KLYNN.
-            </p>
-          </div>
-        </Reveal>
-
-        {/* Nivel 2 — Expansión prevista. */}
-        <Reveal className="mt-16 sm:mt-20">
-          <div className="flex items-center gap-3">
-            <span className="k-caption uppercase tracking-[0.24em] text-[var(--color-k-ink-muted-aa)]">
-              Expansión prevista
-            </span>
-          </div>
-        </Reveal>
-        <RevealGroup as="ul" className="mt-6 grid gap-x-12 gap-y-6 sm:grid-cols-3">
-          {EXPANSION.map(c => (
-            <li key={c.key} className="border-t border-[var(--color-k-border)] pt-5">
-              <h4 className="k-h3 text-[1.375rem] leading-[1.15] text-[var(--color-k-graphite)]">{c.nombre}</h4>
-              <p className="k-body mt-1 text-[0.9375rem] text-[var(--color-k-ink-muted-aa)]">{c.descriptor}</p>
+        {/* Cinco categorías principales, con imagen editorial reconocible. */}
+        <RevealGroup as="ul" className="mt-16 grid grid-cols-2 gap-x-6 gap-y-10 sm:mt-20 sm:grid-cols-3 lg:grid-cols-5">
+          {PRINCIPALES.map(c => (
+            <li key={c.nombre} className="flex flex-col">
+              <MediaSlot
+                asset={c.asset}
+                sizes="(min-width: 1024px) 18vw, (min-width: 640px) 30vw, 45vw"
+                label={c.nombre}
+                tone="light"
+                className="aspect-[4/5] w-full"
+              />
+              <h3 className="k-h3 mt-5 text-[1.125rem] leading-[1.2] tracking-[-0.01em] text-[var(--color-k-graphite)]">
+                {c.nombre}
+              </h3>
+              <p className="k-body mt-1 text-[0.875rem] leading-[1.5] text-[var(--color-k-ink-muted-aa)]">
+                {c.descriptor}
+              </p>
             </li>
           ))}
         </RevealGroup>
 
-        {/* Nivel 3 — Visión de largo plazo. */}
-        <Reveal className="mt-16 sm:mt-20">
+        {/* Futuras — solo texto, menor jerarquía. Sin disponibilidad implícita. */}
+        <Reveal className="mt-20 border-t border-[var(--color-k-border)] pt-8 sm:mt-24">
           <span className="k-caption uppercase tracking-[0.24em] text-[var(--color-k-ink-muted-aa)]">
-            Visión de largo plazo
+            En el horizonte
           </span>
+          <ul className="mt-6 flex flex-wrap gap-x-8 gap-y-3">
+            {HORIZONTE.map(n => (
+              <li key={n}>
+                <span className="k-body text-[0.9375rem] text-[var(--color-k-graphite)] opacity-55">{n}</span>
+              </li>
+            ))}
+          </ul>
         </Reveal>
-        <RevealGroup as="ul" className="mt-6 grid grid-cols-2 gap-x-8 gap-y-4 sm:grid-cols-3 lg:grid-cols-6">
-          {VISION.map(c => (
-            <li key={c.key} className="border-t border-[var(--color-k-border)] pt-4">
-              <span className="k-body text-[0.9375rem] text-[var(--color-k-graphite)] opacity-70">{c.nombre}</span>
-            </li>
-          ))}
-        </RevealGroup>
       </Container>
     </Section>
   )

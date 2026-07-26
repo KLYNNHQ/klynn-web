@@ -30,13 +30,17 @@ export default function CookieBanner() {
   if (!visible) return null
 
   return (
+    // Tarjeta flotante no invasiva. Desktop: esquina inferior DERECHA a 24px
+    // (no tapa el CTA del hero, alineado a la izquierda). Mobile: panel inferior
+    // compacto con márgenes de 16px y respeto de safe-area-inset-bottom. Es
+    // position:fixed → fuera del flujo, sin CLS. No cambia lógica ni copy.
     <div
       role="dialog"
       aria-live="polite"
       aria-label="Aviso de cookies"
-      className="fixed bottom-4 left-4 right-4 z-50 max-w-[420px] bg-[var(--color-k-graphite)] shadow-[0_8px_40px_rgba(40,38,37,0.18)] sm:bottom-6 sm:left-6 sm:right-auto"
+      className="fixed left-4 right-4 bottom-[calc(env(safe-area-inset-bottom,0px)+0.75rem)] z-50 max-w-[400px] bg-[var(--color-k-graphite)] shadow-[0_8px_40px_rgba(40,38,37,0.18)] sm:left-auto sm:right-6 sm:bottom-6"
     >
-      <div className="flex flex-col gap-4 p-5">
+      <div className="flex flex-col gap-3 p-4 sm:gap-4 sm:p-5">
         {/* Mobile copy — short enough to keep the legal link visible while
             holding the banner ≤90px. Desktop keeps the full sentence. */}
         <p className="text-[11px] sm:text-[13px] font-normal text-white/70 leading-snug sm:leading-relaxed flex-1">
@@ -67,13 +71,13 @@ export default function CookieBanner() {
         <div className="flex flex-row gap-2">
           <button
             onClick={() => accept('necessary')}
-            className="px-3 py-2 sm:px-5 sm:py-2.5 text-[11px] sm:text-[13px] font-semibold text-white/60 border border-white/20 hover:border-white/50 hover:text-white transition-all duration-200 whitespace-nowrap"
+            className="px-3 py-2 sm:px-5 sm:py-2.5 text-[11px] sm:text-[13px] font-semibold text-white/60 border border-white/20 hover:border-white/50 hover:text-white transition-all duration-200 motion-reduce:transition-none whitespace-nowrap"
           >
             Solo necesarias
           </button>
           <button
             onClick={() => accept('all')}
-            className="px-3 py-2 sm:px-5 sm:py-2.5 text-[11px] sm:text-[13px] font-semibold text-[var(--color-k-graphite)] bg-[var(--color-k-white)] hover:opacity-90 transition-colors duration-200 whitespace-nowrap"
+            className="px-3 py-2 sm:px-5 sm:py-2.5 text-[11px] sm:text-[13px] font-semibold text-[var(--color-k-graphite)] bg-[var(--color-k-white)] hover:opacity-90 transition-colors duration-200 motion-reduce:transition-none whitespace-nowrap"
           >
             Aceptar todas
           </button>

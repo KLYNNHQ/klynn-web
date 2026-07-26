@@ -42,10 +42,9 @@ export default function NuestroCriterio() {
                 No opinamos. Comparamos.
               </h2>
               <p key="p" className="k-body mt-8 text-[1.0625rem] leading-[1.8] opacity-75">
-                Cada objeto se juzga bajo un mismo criterio, no bajo el gusto de quien lo revisa.
-                Estudiamos el mercado global de esa categoría, enfrentamos las mejores alternativas
-                entre sí y las verificamos en uso real, no en la ficha técnica. Solo avanza lo que
-                supera cada prueba —sin excepciones, aunque sea rentable.
+                Cada objeto se juzga bajo un mismo criterio, no bajo el gusto de quien lo
+                revisa. Ese criterio —no la opinión— es lo que decide qué lleva nuestro
+                nombre. Cómo llegamos a esa decisión, paso a paso:
               </p>
             </RevealGroup>
           </Container>

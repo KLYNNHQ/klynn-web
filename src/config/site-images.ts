@@ -2,21 +2,28 @@
  * Manifiesto central de imágenes de KLYNN.
  *
  * FUENTE ÚNICA imagen → activo. Ningún componente hardcodea una ruta de
- * imagen: todos leen de aquí. Sustituir un render de Lovart por la fotografía
+ * imagen: todos leen de aquí. Sustituir un render/boceto por la fotografía
  * profesional definitiva es editar UNA línea (`src` + dimensiones) en este
  * archivo — nunca se toca un componente.
  *
  * Contrato de reemplazo transparente:
- *   1. `src: null`  → el activo aún no existe. `BrandImage` no pinta nada
- *      (sin placeholder visual); el layout que lo consume degrada con
- *      dignidad a su composición sin imagen.
- *   2. `src: '...'` → el activo existe. Se pinta respetando `width`/`height`
- *      (proporción canónica reservada), por lo que el intercambio no mueve
- *      el layout.
+ *   1. `src: null`  → el activo aún no existe. `BrandImage` no pinta nada;
+ *      `MediaSlot` reserva la proporción canónica y muestra un tratamiento
+ *      editorial provisional sobrio (sin caja gris, ícono roto ni esqueleto),
+ *      por lo que el layout es estable con o sin imagen.
+ *   2. `src: '...'` → el activo existe. Se pinta respetando la proporción
+ *      canónica (width/height), por lo que el intercambio no mueve el layout.
  *
- * Al reemplazar un render temporal por la foto final: conservar la MISMA
- * proporción (width:height). Si la foto llega en otra proporción, se recorta
- * a la canónica antes de publicarla — el layout es el contrato, no la imagen.
+ * Al reemplazar un boceto/render temporal por la foto final: conservar la
+ * MISMA proporción (width:height). Si la foto llega en otra proporción, se
+ * recorta a la canónica antes de publicarla — el layout es el contrato.
+ *
+ * Dirección de arte (todas): fotografía editorial sobria, cálida y táctil;
+ * materiales protagonistas (aluminio cepillado, acero, vidrio, cerámica,
+ * roble, lino, piedra, silicón, fibra técnica); luz natural controlada;
+ * fondos neutros; registro Braun · Muji · publicación editorial. Sin marcas
+ * legibles, sin empaques definitivos, sin precios ni afirmaciones técnicas.
+ * Los objetos son arquetípicos: NO representan inventario disponible.
  */
 
 export interface BrandImageAsset {
@@ -24,27 +31,154 @@ export interface BrandImageAsset {
   src: string | null
   /** Texto alternativo — obligatorio, en español. */
   alt: string
-  /** Proporción canónica reservada. Se conserva entre render temporal y foto final. */
+  /** Proporción canónica reservada. Se conserva entre boceto y foto final. */
   width: number
   height: number
-  /** LCP candidate: solo el activo del primer fold lo lleva. */
+  /** LCP candidate: solo los activos del primer fold lo llevan. */
   priority?: boolean
 }
 
 export const siteImages = {
   /**
-   * HERO PRIMARY — el objeto-manifiesto del primer fold.
+   * HERO — desktop, composición editorial del universo KLYNN en ancho completo.
    *
-   * Estado: EN PRODUCCIÓN (Lovart). Brief: docs/lovart/hero-primary-brief.md
-   * Proporción canónica 4:5 vertical. Cuando el render exista, cambiar `src` a
-   * '/brand/renders/hero-primary.webp' y nada más.
+   * Varios objetos cotidianos de distintas categorías, unidos por una misma
+   * materialidad y lenguaje de diseño: la presentación de una master brand
+   * multicategoría, no la publicidad de un solo producto.
+   * Proporción canónica 16:9 horizontal. Área segura de texto: banda inferior
+   * izquierda. Cuando el render exista, cambiar `src` a
+   * '/brand/renders/hero-wide.webp' y nada más.
    */
-  heroPrimary: {
+  heroWide: {
     src: null,
-    alt: 'Objeto KLYNN: un objeto cotidiano diseñado con criterio, en estudio de luz sobre superficie neutra cálida.',
+    alt: 'Composición editorial del universo KLYNN: objetos cotidianos de distintas categorías con una misma materialidad y lenguaje de diseño, en luz de estudio sobre superficie neutra cálida.',
     width: 2400,
-    height: 3000,
+    height: 1350,
     priority: true,
+  },
+
+  /**
+   * HERO — mobile, misma composición recompuesta en vertical 4:5, sin cortar
+   * los objetos fundamentales. Art direction independiente del desktop.
+   */
+  heroPortrait: {
+    src: null,
+    alt: 'Composición editorial del universo KLYNN recompuesta en vertical: objetos cotidianos de distintas categorías con una misma materialidad, en luz de estudio sobre superficie neutra cálida.',
+    width: 1080,
+    height: 1350,
+  },
+
+  /**
+   * KLYNN CLEAN — la primera categoría materializada como familia conceptual
+   * coherente de utensilios de limpieza (fibras, microfibras, cepillos, mopas,
+   * accesorios). NO telas sueltas ni texturas abstractas. Sin empaques
+   * definitivos, precios ni especificaciones: conceptos EN DESARROLLO.
+   * Proporción canónica 3:2 horizontal.
+   */
+  cleanFamily: {
+    src: null,
+    alt: 'Familia conceptual KLYNN CLEAN: fibras, microfibras, cepillos, mopas y accesorios de limpieza cotidianos, resueltos con una misma materialidad, sobre superficie neutra cálida.',
+    width: 2400,
+    height: 1600,
+  },
+
+  /**
+   * SELECCIONAR · MEJORAR · CREAR — tres detalles pensados como una secuencia
+   * visual coordinada (misma luz, materiales, temperatura y encuadre), no como
+   * tres fotografías independientes. Proporción canónica 1:1.
+   */
+  formaSeleccionar: {
+    src: null,
+    alt: 'Seleccionar: una mano elige un objeto cotidiano entre varias alternativas, en luz cálida y foco selectivo.',
+    width: 1600,
+    height: 1600,
+  },
+  formaMejorar: {
+    src: null,
+    alt: 'Mejorar: detalle macro de una unión de materiales bien resuelta —aluminio cepillado y roble— con acabado preciso.',
+    width: 1600,
+    height: 1600,
+  },
+  formaCrear: {
+    src: null,
+    alt: 'Crear: materias primas honestas —lámina de aluminio, bloque de roble, fibra técnica— antes del ensamblaje, en estudio sobrio.',
+    width: 1600,
+    height: 1600,
+  },
+
+  /**
+   * UNIVERSO KLYNN — cinco tiles de categoría, claramente reconocibles (no
+   * abstractas), con una misma dirección de arte. Proporción canónica 4:5.
+   */
+  categoryClean: {
+    src: null,
+    alt: 'KLYNN CLEAN: familia de utensilios de limpieza cotidianos —fibra, cepillo, mopa— sobre superficie neutra cálida.',
+    width: 1200,
+    height: 1500,
+  },
+  categoryHome: {
+    src: null,
+    alt: 'KLYNN HOME: objetos esenciales de la casa en roble y lino, en un ambiente doméstico cálido.',
+    width: 1200,
+    height: 1500,
+  },
+  categoryKitchen: {
+    src: null,
+    alt: 'KLYNN KITCHEN: utensilios cotidianos de cocina en acero, vidrio, cerámica o silicón, sobre superficie cálida.',
+    width: 1200,
+    height: 1500,
+  },
+  categoryStorage: {
+    src: null,
+    alt: 'KLYNN STORAGE: sistema de organización modular y sobrio, en metal mate o roble, de geometría limpia.',
+    width: 1200,
+    height: 1500,
+  },
+  categoryTech: {
+    src: null,
+    alt: 'KLYNN TECH: accesorios tecnológicos cotidianos, discretos y funcionales, sin brillo futurista.',
+    width: 1200,
+    height: 1500,
+  },
+
+  /* ------------------------------------------------------------------ Campaña
+   * Prueba de integración visual (bloque campaign-test). Imágenes reales
+   * derivadas de public/images/campaign-test/ → public/images/campaign/.
+   * Se referencian los .webp; next/image sirve AVIF automáticamente
+   * (next.config images.formats incluye avif). Son visualizaciones
+   * conceptuales de producto EN DESARROLLO — no representan inventario.
+   * Productos aislados (CLEAN/EVERYDAY/TECH): cuadrados 1:1. Escenas
+   * ambientales (HOME/OUTDOOR): verticales 928×1152 (~4:5).
+   */
+  campaignClean: {
+    src: '/images/campaign/klynn-clean-system.webp',
+    alt: 'Sistema de limpieza KLYNN: cubeta giratoria y mopa plana, sobre fondo neutro.',
+    width: 1600,
+    height: 1600,
+  },
+  campaignEveryday: {
+    src: '/images/campaign/klynn-everyday-drinkware.webp',
+    alt: 'Familia de termos y botellas KLYNN en acero, con detalles en madera, corcho y textil.',
+    width: 1600,
+    height: 1600,
+  },
+  campaignTech: {
+    src: '/images/campaign/klynn-tech-ecosystem.webp',
+    alt: 'Ecosistema de accesorios tecnológicos KLYNN: base de carga, soporte, montura magnética, batería y organizador de cables.',
+    width: 1600,
+    height: 1600,
+  },
+  campaignHome: {
+    src: '/images/campaign/klynn-home-modular-sofa.webp',
+    alt: 'Sofá modular KLYNN en lino, en una sala interior con luz natural.',
+    width: 928,
+    height: 1152,
+  },
+  campaignOutdoor: {
+    src: '/images/campaign/klynn-outdoor-living.webp',
+    alt: 'Sala de estar exterior KLYNN al atardecer, en una terraza frente a la costa.',
+    width: 928,
+    height: 1152,
   },
 } satisfies Record<string, BrandImageAsset>
 

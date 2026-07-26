@@ -30,10 +30,11 @@ function onNavClick(href: string) {
 // Solo anclas de la home mientras las rutas internas se reconstruyen. La
 // navegación definitiva (Inicio · Categorías · Productos · Nosotros ·
 // Contacto) llega en la fase de construcción. /productos se purgó.
+// Journal se retira de la navegación principal (tenía demasiado peso para
+// esta etapa) y se conserva en el footer. Su ruta y artículos siguen vivos.
 const LINKS = [
   { href: '/nuestro-criterio', label: 'Nuestro criterio' },
   { href: '/#ecosistema', label: 'Categorías' },
-  { href: '/journal', label: 'Journal' },
   { href: '/contacto', label: 'Contacto' },
 ]
 

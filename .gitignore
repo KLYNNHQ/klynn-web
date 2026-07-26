@@ -36,3 +36,7 @@ public/images/products/F4.jpg
 
 # Evidencia de auditorías (local, no versionada)
 audit-evidence/
+
+# Fuentes y boards de campaña (43MB de PNG originales + láminas de validación,
+# no usados por la app). El sitio solo usa los derivados en public/images/campaign/.
+public/images/campaign-test/

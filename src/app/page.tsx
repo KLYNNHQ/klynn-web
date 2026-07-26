@@ -1,24 +1,26 @@
 import Navbar from '@/components/klynn/Navbar'
 import Hero from '@/components/klynn/Hero'
-import Problema from '@/components/klynn/Problema'
-import Respuesta from '@/components/klynn/Respuesta'
-import Proceso from '@/components/klynn/Proceso'
-import TresFormas from '@/components/klynn/TresFormas'
-import Estandar from '@/components/klynn/Estandar'
+import QueEsKlynn from '@/components/klynn/QueEsKlynn'
+import KlynnClean from '@/components/klynn/KlynnClean'
+import Formas from '@/components/klynn/Formas'
 import Ecosistema from '@/components/klynn/Ecosistema'
-import Contacto from '@/components/klynn/Contacto'
+import CampaignTest from '@/components/klynn/CampaignTest'
+import EstandarHome from '@/components/klynn/EstandarHome'
+import Cierre from '@/components/klynn/Cierre'
 import Footer from '@/components/klynn/Footer'
 
 /**
- * Home KLYNN — narrativa de decisión / confianza, 100% en español.
+ * Home KLYNN — presentación de master brand multicategoría, ~70% visual.
  *
- * Arco: problema (demasiadas opciones) → respuesta (una elección confiable) →
- * cómo decide (proceso) → tres formas de actuar → el estándar → el universo de
- * categorías → visión y contacto. Vende el criterio, no un catálogo.
+ * Arco reducido: hero visual → qué es KLYNN (breve) → KLYNN CLEAN (primera
+ * categoría) → seleccionar/mejorar/crear → universo de categorías → el
+ * estándar (tres pilares) → cierre. La metodología extensa (problema, proceso
+ * de siete pasos, diez criterios) NO se repite aquí: vive en /nuestro-criterio.
  *
  * Componentes de fases anteriores no usados en esta narrativa (Apertura,
- * Filosofia, Materiales, CTA) permanecen en el repo para posible reuso; no se
- * eliminan en este incremento.
+ * Filosofia, Materiales, CTA, Problema, Respuesta, Proceso, TresFormas,
+ * Estandar, Contacto) permanecen en el repo para reuso o para las páginas
+ * secundarias; no se eliminan.
  */
 
 export default function Home() {
@@ -27,13 +29,13 @@ export default function Home() {
       <Navbar />
       <main id="contenido" tabIndex={-1}>
         <Hero />
-        <Problema />
-        <Respuesta />
-        <Proceso />
-        <TresFormas />
-        <Estandar />
+        <QueEsKlynn />
+        <KlynnClean />
+        <Formas />
         <Ecosistema />
-        <Contacto />
+        <CampaignTest />
+        <EstandarHome />
+        <Cierre />
       </main>
       <Footer />
     </>
