@@ -3,6 +3,7 @@ import { Container } from '@/design-system/primitives'
 import { brand } from '@/config/brand'
 import { CATEGORIES } from '@/lib/klynn/categories'
 import Wordmark from './Wordmark'
+import Isotype from './Isotype'
 import SocialLinks from './SocialLinks'
 
 /**
@@ -13,7 +14,8 @@ import SocialLinks from './SocialLinks'
  * real (hoy ninguna → no se muestran). Sin enlaces muertos.
  */
 
-const AÑO = 2026
+// Año dinámico: se actualiza en cada build/deploy (Footer es server component).
+const AÑO = new Date().getFullYear()
 
 const NAV = [
   { href: '/nuestro-criterio', label: 'Nuestro criterio' },
@@ -28,6 +30,12 @@ export default function Footer() {
   return (
     <footer className="border-t border-[var(--color-k-border)] bg-[var(--color-k-white)] pt-24 pb-12 text-[var(--color-k-graphite)]">
       <Container>
+        {/* Firma final: isotipo oficial como cierre de marca, con espacio
+            negativo. Fondo claro → el símbolo grafito queda nítido. */}
+        <div className="flex justify-center pb-20 sm:pb-28">
+          <Isotype size={72} />
+        </div>
+
         <div className="grid gap-16 lg:grid-cols-12">
           <div className="lg:col-span-4">
             <Wordmark height={24} />
@@ -65,7 +73,13 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-24 flex flex-col gap-6 border-t border-[var(--color-k-border)] pt-8 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-24 border-t border-[var(--color-k-border)] pt-8">
+          {/* Leyenda honesta: la landing muestra visualizaciones conceptuales. */}
+          <p className="k-body max-w-[70ch] text-[0.8125rem] leading-[1.6] text-[var(--color-k-ink-muted-aa)]">
+            Las imágenes de producto son visualizaciones conceptuales. Algunos
+            productos y categorías pueden estar en desarrollo.
+          </p>
+          <div className="mt-8 flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
           <p className="k-caption text-[0.6875rem] uppercase tracking-[0.16em] text-[var(--color-k-ink-muted-aa)]">
             © {AÑO} {brand.legalName}
           </p>
@@ -81,6 +95,7 @@ export default function Footer() {
               </Link>
             </li>
           </ul>
+          </div>
         </div>
       </Container>
     </footer>

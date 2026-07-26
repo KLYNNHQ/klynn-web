@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { Menu, X } from 'lucide-react'
 import Wordmark from './Wordmark'
+import Isotype from './Isotype'
 import { track, AnalyticsEvents } from '@/lib/analytics'
 
 /** Dispara category_navigation solo para el enlace de Categorías. */
@@ -60,8 +61,10 @@ export default function Navbar() {
       }`}
     >
       <nav className="mx-auto flex h-[84px] max-w-[1440px] items-center justify-between px-8 lg:px-16">
-        <Link href="/" aria-label="KLYNN" className="flex items-center">
-          <Wordmark height={26} />
+        {/* Lockup institucional: isotipo oficial + wordmark. */}
+        <Link href="/" aria-label="KLYNN" className="flex items-center gap-2.5">
+          <Isotype size={26} priority />
+          <Wordmark height={22} />
         </Link>
 
         <ul className="hidden items-center gap-12 lg:flex">
