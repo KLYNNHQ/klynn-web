@@ -2,6 +2,7 @@ import { createClient } from '@supabase/supabase-js'
 import { Resend } from 'resend'
 import { NextRequest, NextResponse } from 'next/server'
 import { checkRateLimit } from '@/lib/rate-limit'
+import { formsEnabled } from '@/config/features'
 import * as Sentry from '@sentry/nextjs'
 
 // ─── Clientes (lazy — se inicializan dentro del handler, no en build time) ───
@@ -102,6 +103,15 @@ const CANAL_LABELS: Record<string, string> = {
 
 // ─── POST /api/contact ───────────────────────────────────────────────────────
 export async function POST(req: NextRequest) {
+  // ── Interruptor de formularios ──
+  // `formsEnabled` ya ocultaba el formulario en la UI, pero el endpoint seguía
+  // aceptando POST directos. Con los formularios apagados la ruta no existe de
+  // cara al exterior: 404 genérico antes de tocar rate-limit, Supabase o Resend,
+  // sin efectos secundarios ni pistas sobre la función deshabilitada.
+  if (!formsEnabled) {
+    return NextResponse.json({ error: 'Not found' }, { status: 404 })
+  }
+
   try {
     // ── Rate limiting ──
     const ip =
