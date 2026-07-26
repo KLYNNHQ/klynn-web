@@ -50,8 +50,8 @@ export const siteImages = {
    * '/brand/renders/hero-wide.webp' y nada más.
    */
   heroWide: {
-    src: null,
-    alt: 'Composición editorial del universo KLYNN: objetos cotidianos de distintas categorías con una misma materialidad y lenguaje de diseño, en luz de estudio sobre superficie neutra cálida.',
+    src: '/images/hero/hero-wide.webp',
+    alt: 'Escena de hogar KLYNN en luz cálida: familia de termos y botellas sobre una mesa, un sofá modular de lino y un sistema de limpieza de cubeta y mopa en uso — objetos cotidianos de distintas categorías bajo un mismo lenguaje de diseño.',
     width: 2400,
     height: 1350,
     priority: true,
@@ -62,10 +62,10 @@ export const siteImages = {
    * los objetos fundamentales. Art direction independiente del desktop.
    */
   heroPortrait: {
-    src: null,
-    alt: 'Composición editorial del universo KLYNN recompuesta en vertical: objetos cotidianos de distintas categorías con una misma materialidad, en luz de estudio sobre superficie neutra cálida.',
-    width: 1080,
-    height: 1350,
+    src: '/images/hero/hero-portrait.webp',
+    alt: 'Escena de hogar KLYNN en vertical: sofá modular de lino, termos y botellas sobre una mesa y un sistema de limpieza de cubeta y mopa en uso — varias categorías cotidianas con una misma materialidad.',
+    width: 1200,
+    height: 1500,
   },
 
   /**
