@@ -52,8 +52,17 @@ const RHYTHM: Record<Rhythm, string> = {
   // fold se estiraría sin tope en pantallas muy altas, perdiendo tensión).
   // En móvil se comprime a 88svh: a pantalla completa el titular nadaba en
   // vacío y el fold perdía tensión.
+  //
+  // En móvil 88svh es MÍNIMO, no altura fija: con la barra del navegador
+  // visible el viewport cae a ~664px y 88svh (~584px) queda por debajo del
+  // contenido del fold. Siendo altura fija, el sobrante se expulsaba por
+  // arriba (el contenido se compone con justify-end) y el eyebrow acababa
+  // bajo el header fixed. Como mínimo, el fold mantiene su tensión cuando hay
+  // sitio y crece lo justo cuando no lo hay. Va con items-stretch porque
+  // contra min-height el hijo ya no resuelve `h-full`, y centrarlo lo
+  // desanclaría del borde inferior.
   hero:
-    'h-[88svh] min-h-[560px] max-h-[1080px] sm:h-[100svh] sm:min-h-[640px] flex items-center',
+    'h-auto min-h-[88svh] sm:h-[100svh] sm:min-h-[640px] sm:max-h-[1080px] flex items-stretch sm:items-center',
   loose: 'py-32 lg:py-44',
   normal: 'py-24 lg:py-32',
   tight: 'py-16 lg:py-20',

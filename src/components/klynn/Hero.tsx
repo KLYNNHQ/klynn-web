@@ -95,8 +95,10 @@ export default function Hero() {
       )}
 
       {/* Contenido — estático (sin reveal): es el primer fold y el elemento LCP. */}
-      <Container className="relative h-full pb-0">
-        <div className="flex h-full flex-col justify-end">
+      {/* En móvil el fold se dimensiona por min-height, contra la que `h-full`
+          no resuelve: el alto real lo aporta el estirado flex + `grow`. */}
+      <Container className="relative flex flex-col pb-0 sm:h-full">
+        <div className="flex grow flex-col justify-end">
           <div className="mb-auto flex items-center gap-3 pt-28 sm:pt-40">
             <span
               aria-hidden
