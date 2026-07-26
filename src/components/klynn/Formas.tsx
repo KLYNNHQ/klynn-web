@@ -2,6 +2,8 @@ import { Container, Section } from '@/design-system/primitives'
 import Reveal from '@/design-system/Reveal'
 import RevealGroup from '@/design-system/RevealGroup'
 import MediaSlot from './MediaSlot'
+import AtmosphereFrame from './AtmosphereFrame'
+import { hasAsset } from './BrandImage'
 import { siteImages } from '@/config/site-images'
 import type { BrandImageAsset } from '@/config/site-images'
 
@@ -15,10 +17,14 @@ import type { BrandImageAsset } from '@/config/site-images'
  * oscuro para dar peso a la capacidad.
  */
 
-const FORMAS: { n: string; t: string; d: string; asset: BrandImageAsset; label: string }[] = [
-  { n: '01', t: 'Seleccionar', d: 'Cuando lo mejor ya existe, lo encontramos.', asset: siteImages.formaSeleccionar, label: 'Seleccionar' },
-  { n: '02', t: 'Mejorar', d: 'Cuando puede ser mejor, lo refinamos.', asset: siteImages.formaMejorar, label: 'Mejorar' },
-  { n: '03', t: 'Crear', d: 'Cuando nada cumple, lo creamos.', asset: siteImages.formaCrear, label: 'Crear' },
+// Acento por concepto (tokens de marca): Seleccionar = pizarra mineral fría
+// (criterio/precisión), Mejorar = ámbar cálido y activo (refinamiento), Crear =
+// terracota cálida y rica (materialización). Progresión frío→cálido coherente
+// con §5 sin repetir sus cinco tratamientos.
+const FORMAS: { n: string; t: string; d: string; asset: BrandImageAsset; label: string; accent: string }[] = [
+  { n: '01', t: 'Seleccionar', d: 'Cuando lo mejor ya existe, lo encontramos.', asset: siteImages.formaSeleccionar, label: 'Seleccionar', accent: 'color-mix(in srgb, var(--color-k-bath) 42%, var(--color-k-graphite))' },
+  { n: '02', t: 'Mejorar', d: 'Cuando puede ser mejor, lo refinamos.', asset: siteImages.formaMejorar, label: 'Mejorar', accent: 'var(--color-k-kitchen)' },
+  { n: '03', t: 'Crear', d: 'Cuando nada cumple, lo creamos.', asset: siteImages.formaCrear, label: 'Crear', accent: 'var(--color-k-clean)' },
 ]
 
 export default function Formas() {
@@ -39,13 +45,17 @@ export default function Formas() {
         <RevealGroup as="ol" className="mt-16 grid gap-x-10 gap-y-12 sm:mt-20 sm:grid-cols-3">
           {FORMAS.map(f => (
             <li key={f.n} className="flex flex-col">
-              <MediaSlot
-                asset={f.asset}
-                sizes="(min-width: 640px) 30vw, 100vw"
-                label={f.label}
-                tone="dark"
-                className="aspect-square w-full"
-              />
+              {hasAsset(f.asset) ? (
+                <MediaSlot
+                  asset={f.asset}
+                  sizes="(min-width: 640px) 30vw, 100vw"
+                  label={f.label}
+                  tone="dark"
+                  className="aspect-square w-full"
+                />
+              ) : (
+                <AtmosphereFrame accent={f.accent} label={f.label} tone="dark" className="aspect-square w-full" />
+              )}
               <div className="mt-6 flex items-baseline gap-3 border-t border-white/15 pt-5">
                 <span className="k-caption text-[0.625rem] tracking-[0.2em] opacity-50">{f.n}</span>
                 <div>

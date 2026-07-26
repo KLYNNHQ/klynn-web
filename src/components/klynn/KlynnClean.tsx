@@ -1,6 +1,8 @@
 import { Container, Section } from '@/design-system/primitives'
 import Reveal from '@/design-system/Reveal'
 import MediaSlot from './MediaSlot'
+import AtmosphereFrame from './AtmosphereFrame'
+import { hasAsset } from './BrandImage'
 import { siteImages } from '@/config/site-images'
 
 /**
@@ -47,13 +49,24 @@ export default function KlynnClean() {
           </Reveal>
 
           <Reveal delay={120}>
-            <MediaSlot
-              asset={siteImages.cleanFamily}
-              sizes="(min-width: 1024px) 60vw, 100vw"
-              label="KLYNN CLEAN · familia en desarrollo"
-              tone="light"
-              className="aspect-[3/2] w-full"
-            />
+            {hasAsset(siteImages.cleanFamily) ? (
+              <MediaSlot
+                asset={siteImages.cleanFamily}
+                sizes="(min-width: 1024px) 60vw, 100vw"
+                label="KLYNN CLEAN · familia en desarrollo"
+                tone="light"
+                className="aspect-[3/2] w-full"
+              />
+            ) : (
+              // Atmósfera CLEAN: cálida, limpia y luminosa con terracota oficial
+              // (#D87345) reflejada con moderación — no un bloque naranja plano.
+              <AtmosphereFrame
+                accent="var(--color-k-clean)"
+                label="KLYNN CLEAN · familia en desarrollo"
+                tone="light"
+                className="aspect-[3/2] w-full"
+              />
+            )}
           </Reveal>
         </div>
       </Container>
