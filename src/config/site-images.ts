@@ -26,6 +26,23 @@
  * Los objetos son arquetípicos: NO representan inventario disponible.
  */
 
+/**
+ * Estado de un activo dentro del Canon Visual de KLYNN.
+ *
+ * `A` PLACEHOLDER — no comunica marca. Solo sostiene el layout mientras el
+ *     activo no existe. Siempre acompaña a `src: null`.
+ * `B` PROVISIONAL — comunica correctamente la dirección de la marca y puede
+ *     vivir en producción, pero no cumple el sistema todavía. Sale en cuanto
+ *     llegue su reemplazo definitivo.
+ * `C` CANON — imagen definitiva y referencia obligatoria: toda pieza futura
+ *     debe parecer de la misma campaña.
+ *
+ * El canon es dinámico: un activo en `C` puede volver a `B` o salir del sitio
+ * si el conjunto demuestra que rompe la unidad visual. No hay aprobaciones
+ * permanentes; la coherencia del universo está por encima de cualquier imagen.
+ */
+export type AssetEstado = 'A' | 'B' | 'C'
+
 export interface BrandImageAsset {
   /** Ruta pública del activo, o `null` mientras no exista. */
   src: string | null
@@ -34,6 +51,12 @@ export interface BrandImageAsset {
   /** Proporción canónica reservada. Se conserva entre boceto y foto final. */
   width: number
   height: number
+  /**
+   * Estado en el Canon Visual. Obligatorio: obliga a declarar de forma
+   * explícita qué es placeholder, qué es provisional y qué es definitivo,
+   * de modo que el código refleje el estado real del proyecto.
+   */
+  estado: AssetEstado
   /** LCP candidate: solo los activos del primer fold lo llevan. */
   priority?: boolean
 }
@@ -54,6 +77,7 @@ export const siteImages = {
     alt: 'Escena de hogar KLYNN en luz cálida: familia de termos y botellas sobre una mesa, un sofá modular de lino y un sistema de limpieza de cubeta y mopa en uso — objetos cotidianos de distintas categorías bajo un mismo lenguaje de diseño.',
     width: 2400,
     height: 1350,
+    estado: 'B',
     priority: true,
   },
 
@@ -66,6 +90,7 @@ export const siteImages = {
     alt: 'Escena de hogar KLYNN en vertical: sofá modular de lino, termos y botellas sobre una mesa y un sistema de limpieza de cubeta y mopa en uso — varias categorías cotidianas con una misma materialidad.',
     width: 1200,
     height: 1500,
+    estado: 'B',
   },
 
   /**
@@ -80,6 +105,34 @@ export const siteImages = {
     alt: 'Familia conceptual KLYNN CLEAN: fibras, microfibras, cepillos, mopas y accesorios de limpieza cotidianos, resueltos con una misma materialidad, sobre superficie neutra cálida.',
     width: 2400,
     height: 1600,
+    estado: 'A',
+  },
+
+  /**
+   * MATERIA — el lenguaje material antes de que sea producto. Cinco materias
+   * primas en contacto, fotografiadas como sustancias y no como muestrario.
+   * Es la pieza que costura visualmente el resto del recorrido.
+   * Proporción canónica 3:2 horizontal.
+   */
+  brandMaterial: {
+    src: null,
+    alt: 'Materias primas KLYNN en contacto: lámina de aluminio cepillado, bloque de roble, placa de cerámica sin esmaltar, lino crudo y corcho, sobre piedra caliza cálida.',
+    width: 2400,
+    height: 1600,
+    estado: 'A',
+  },
+
+  /**
+   * MATERIA — el detalle de manufactura: la unión donde dos materiales se
+   * encuentran bien resueltos. Sin producto identificable, solo factura.
+   * Proporción canónica 1:1.
+   */
+  brandDetail: {
+    src: null,
+    alt: 'Detalle macro de la unión entre un collar de aluminio cepillado y una superficie de roble torneado, con la tolerancia real visible en la junta.',
+    width: 1600,
+    height: 1600,
+    estado: 'A',
   },
 
   /**
@@ -92,18 +145,21 @@ export const siteImages = {
     alt: 'Seleccionar: una mano elige un objeto cotidiano entre varias alternativas, en luz cálida y foco selectivo.',
     width: 1600,
     height: 1600,
+    estado: 'A',
   },
   formaMejorar: {
     src: null,
     alt: 'Mejorar: detalle macro de una unión de materiales bien resuelta —aluminio cepillado y roble— con acabado preciso.',
     width: 1600,
     height: 1600,
+    estado: 'A',
   },
   formaCrear: {
     src: null,
     alt: 'Crear: materias primas honestas —lámina de aluminio, bloque de roble, fibra técnica— antes del ensamblaje, en estudio sobrio.',
     width: 1600,
     height: 1600,
+    estado: 'A',
   },
 
   /**
@@ -115,30 +171,35 @@ export const siteImages = {
     alt: 'KLYNN CLEAN: familia de utensilios de limpieza cotidianos —fibra, cepillo, mopa— sobre superficie neutra cálida.',
     width: 1200,
     height: 1500,
+    estado: 'A',
   },
   categoryHome: {
     src: null,
     alt: 'KLYNN HOME: objetos esenciales de la casa en roble y lino, en un ambiente doméstico cálido.',
     width: 1200,
     height: 1500,
+    estado: 'A',
   },
   categoryKitchen: {
     src: null,
     alt: 'KLYNN KITCHEN: utensilios cotidianos de cocina en acero, vidrio, cerámica o silicón, sobre superficie cálida.',
     width: 1200,
     height: 1500,
+    estado: 'A',
   },
   categoryStorage: {
     src: null,
     alt: 'KLYNN STORAGE: sistema de organización modular y sobrio, en metal mate o roble, de geometría limpia.',
     width: 1200,
     height: 1500,
+    estado: 'A',
   },
   categoryTech: {
     src: null,
     alt: 'KLYNN TECH: accesorios tecnológicos cotidianos, discretos y funcionales, sin brillo futurista.',
     width: 1200,
     height: 1500,
+    estado: 'A',
   },
 
   /* ------------------------------------------------------------------ Campaña
@@ -159,18 +220,21 @@ export const siteImages = {
     alt: 'Sistema de limpieza KLYNN: cubeta giratoria y mopa plana, sobre fondo neutro.',
     width: 1600,
     height: 1600,
+    estado: 'B',
   },
   campaignKitchen: {
     src: '/images/campaign/klynn-everyday-drinkware.webp',
     alt: 'Familia de termos y botellas KLYNN en acero, con detalles en madera, corcho y textil.',
     width: 1600,
     height: 1600,
+    estado: 'B',
   },
   campaignTech: {
     src: '/images/campaign/klynn-tech-ecosystem.webp',
     alt: 'Ecosistema de accesorios tecnológicos KLYNN: base de carga, soporte, montura magnética, batería y organizador de cables.',
     width: 1600,
     height: 1600,
+    estado: 'B',
   },
 } satisfies Record<string, BrandImageAsset>
 

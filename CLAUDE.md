@@ -16,7 +16,10 @@
 
 - **Proyecto:** MagiClean landing page
 - **Tipo:** Next.js 16 app, frontend público B2B
-- **Ubicación correcta:** `/Users/jacobolevy/Desktop/klynn-landing`
+- **Ubicación correcta:** `/Users/jacobolevy/Projects/klynn-web`
+  (movido desde `~/Desktop/klynn-landing` el 2026-07-26: `~/Desktop` está
+  sincronizado por iCloud, que duplicaba miles de archivos en `node_modules`
+  y rompía `tsc`. El respaldo del código es GitHub, no iCloud.)
 - **NO es:** `/Users/jacobolevy/Projects/klynn-crm` (ese es otro proyecto, el CRM interno, fuera de scope)
 - **Dueño del proyecto:** Jacobo Levy, fundador de Prolim BH, SA de CV
 
