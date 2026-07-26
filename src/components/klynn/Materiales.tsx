@@ -32,7 +32,7 @@ const CRITERIOS = [
 
 export default function Materiales() {
   return (
-    <Section id="criterio" rhythm="loose" tone="raised">
+    <Section id="materia" rhythm="loose" tone="raised">
       <Container>
         <Reveal className="max-w-[44ch]">
           <div className="flex items-center gap-3">

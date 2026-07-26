@@ -5,16 +5,20 @@ import MediaSlot from './MediaSlot'
 import { siteImages } from '@/config/site-images'
 
 /**
- * Bloque de prueba de integración de la campaña visual KLYNN.
+ * Los objetos, en un mismo registro.
  *
- * Muestra las cinco imágenes finales con ritmo entre escalas —producto
- * aislado (CLEAN), pareja de productos (EVERYDAY/TECH) y escenas ambientales
- * (HOME/OUTDOOR)— usando exclusivamente el sistema visual aprobado (Section,
- * Container, Reveal, MediaSlot). Textos SIEMPRE en HTML, nunca sobre la foto.
+ * Tres visualizaciones de producto aislado —CLEAN en feature, KITCHEN y TECH
+ * en pareja— que comparten fondo, escala y tratamiento. La coherencia entre
+ * ellas es el argumento del bloque: un mismo criterio aplicado a objetos que
+ * no se parecen.
  *
- * OUTDOOR es categoría futura: no se afirma disponibilidad. Una sola nota
- * conceptual cierra el bloque. Sin precios, specs, nombres de producto ni
- * fechas.
+ * Las dos escenas ambientales anteriores (mobiliario de interior y sala de
+ * exterior) se retiraron: eran fotografía de interiorismo, no de objeto, y
+ * contradecían la tesis de la marca. Su registro —habitación, mobiliario,
+ * presencia humana— queda fuera del sistema visual.
+ *
+ * Textos SIEMPRE en HTML, nunca sobre la foto. Sin precios, specs, nombres de
+ * producto ni fechas: son conceptos en desarrollo.
  */
 
 export default function CampaignTest() {
@@ -54,19 +58,19 @@ export default function CampaignTest() {
           </Reveal>
         </div>
 
-        {/* Ritmo 2 — EVERYDAY + TECH: pareja de productos aislados. */}
+        {/* Ritmo 2 — KITCHEN + TECH: pareja de productos aislados. */}
         <RevealGroup as="ul" className="mt-16 grid gap-x-12 gap-y-12 sm:mt-24 sm:grid-cols-2">
           <li>
             <MediaSlot
-              asset={siteImages.campaignEveryday}
+              asset={siteImages.campaignKitchen}
               sizes="(min-width: 640px) 45vw, 100vw"
               tone="light"
               imgClassName="object-cover object-center"
               className="aspect-square w-full bg-[var(--color-k-white)]"
             />
-            <h3 className="k-h3 mt-6 text-[1.375rem] leading-[1.15] text-[var(--color-k-graphite)]">EVERYDAY</h3>
+            <h3 className="k-h3 mt-6 text-[1.375rem] leading-[1.15] text-[var(--color-k-graphite)]">KITCHEN</h3>
             <p className="k-body mt-2 text-[1rem] leading-[1.6] text-[var(--color-k-ink-muted-aa)]">
-              Diseñado para acompañarte.
+              Función todos los días.
             </p>
           </li>
           <li>
@@ -81,43 +85,6 @@ export default function CampaignTest() {
             <p className="k-body mt-2 text-[1rem] leading-[1.6] text-[var(--color-k-ink-muted-aa)]">
               Tecnología sin fricción.
             </p>
-          </li>
-        </RevealGroup>
-
-        {/* Ritmo 3 — HOME + OUTDOOR: escenas ambientales, texto sobre la imagen
-            con velo sutil (HTML, no incrustado). Conservan profundidad y escala. */}
-        <RevealGroup as="ul" className="mt-16 grid gap-x-12 gap-y-12 sm:mt-24 sm:grid-cols-2">
-          <li className="relative">
-            <MediaSlot
-              asset={siteImages.campaignHome}
-              sizes="(min-width: 640px) 45vw, 100vw"
-              tone="dark"
-              overlay
-              imgClassName="object-cover object-center"
-              className="aspect-[4/5] w-full"
-            />
-            <div className="pointer-events-none absolute inset-x-0 bottom-0 p-6 sm:p-8">
-              <h3 className="k-h3 text-[1.375rem] leading-[1.15] text-[var(--color-k-white)]">HOME</h3>
-              <p className="k-body mt-1 text-[1rem] leading-[1.5] text-[var(--color-k-white)] opacity-85">
-                Confort que permanece.
-              </p>
-            </div>
-          </li>
-          <li className="relative">
-            <MediaSlot
-              asset={siteImages.campaignOutdoor}
-              sizes="(min-width: 640px) 45vw, 100vw"
-              tone="dark"
-              overlay
-              imgClassName="object-cover object-center"
-              className="aspect-[4/5] w-full"
-            />
-            <div className="pointer-events-none absolute inset-x-0 bottom-0 p-6 sm:p-8">
-              <h3 className="k-h3 text-[1.375rem] leading-[1.15] text-[var(--color-k-white)]">OUTDOOR</h3>
-              <p className="k-body mt-1 text-[1rem] leading-[1.5] text-[var(--color-k-white)] opacity-85">
-                Vivir mejor, afuera.
-              </p>
-            </div>
           </li>
         </RevealGroup>
 

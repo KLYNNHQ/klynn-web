@@ -142,13 +142,17 @@ export const siteImages = {
   },
 
   /* ------------------------------------------------------------------ Campaña
-   * Prueba de integración visual (bloque campaign-test). Imágenes reales
-   * derivadas de public/images/campaign-test/ → public/images/campaign/.
-   * Se referencian los .webp; next/image sirve AVIF automáticamente
-   * (next.config images.formats incluye avif). Son visualizaciones
-   * conceptuales de producto EN DESARROLLO — no representan inventario.
-   * Productos aislados (CLEAN/EVERYDAY/TECH): cuadrados 1:1. Escenas
-   * ambientales (HOME/OUTDOOR): verticales 928×1152 (~4:5).
+   * Visualizaciones conceptuales de producto EN DESARROLLO — no representan
+   * inventario. Los tres son producto aislado en cuadrado 1:1, con el mismo
+   * fondo y el mismo tratamiento: esa coherencia es la razón de que sigan en
+   * el sitio mientras no exista su reemplazo definitivo.
+   *
+   * Estado PROVISIONAL, no canon: comunican correctamente la dirección de la
+   * marca pero no cumplen el sistema de luz (fondo blanco puro, sin sombra
+   * direccional). Salen en cuanto llegue su sustituto.
+   *
+   * Las dos escenas ambientales (mobiliario de interior y sala de exterior) se
+   * retiraron por quedar fuera del universo: eran interiorismo, no objeto.
    */
   campaignClean: {
     src: '/images/campaign/klynn-clean-system.webp',
@@ -156,7 +160,7 @@ export const siteImages = {
     width: 1600,
     height: 1600,
   },
-  campaignEveryday: {
+  campaignKitchen: {
     src: '/images/campaign/klynn-everyday-drinkware.webp',
     alt: 'Familia de termos y botellas KLYNN en acero, con detalles en madera, corcho y textil.',
     width: 1600,
@@ -167,18 +171,6 @@ export const siteImages = {
     alt: 'Ecosistema de accesorios tecnológicos KLYNN: base de carga, soporte, montura magnética, batería y organizador de cables.',
     width: 1600,
     height: 1600,
-  },
-  campaignHome: {
-    src: '/images/campaign/klynn-home-modular-sofa.webp',
-    alt: 'Sofá modular KLYNN en lino, en una sala interior con luz natural.',
-    width: 928,
-    height: 1152,
-  },
-  campaignOutdoor: {
-    src: '/images/campaign/klynn-outdoor-living.webp',
-    alt: 'Sala de estar exterior KLYNN al atardecer, en una terraza frente a la costa.',
-    width: 928,
-    height: 1152,
   },
 } satisfies Record<string, BrandImageAsset>
 
