@@ -4,6 +4,12 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { Menu, X } from 'lucide-react'
 import Wordmark from './Wordmark'
+import { track, AnalyticsEvents } from '@/lib/analytics'
+
+/** Dispara category_navigation solo para el enlace de Categorías. */
+function onNavClick(href: string) {
+  if (href.includes('ecosistema')) track(AnalyticsEvents.CategoryNavigation, { source: 'nav' })
+}
 
 /**
  * Navbar KLYNN.
@@ -25,9 +31,10 @@ import Wordmark from './Wordmark'
 // navegación definitiva (Inicio · Categorías · Productos · Nosotros ·
 // Contacto) llega en la fase de construcción. /productos se purgó.
 const LINKS = [
+  { href: '/nuestro-criterio', label: 'Nuestro criterio' },
   { href: '/#ecosistema', label: 'Categorías' },
-  { href: '/#filosofia', label: 'Filosofía' },
-  { href: '/#criterio', label: 'Criterio' },
+  { href: '/journal', label: 'Journal' },
+  { href: '/contacto', label: 'Contacto' },
 ]
 
 export default function Navbar() {
@@ -61,7 +68,8 @@ export default function Navbar() {
             <li key={l.href}>
               <Link
                 href={l.href}
-                className="k-caption text-[0.6875rem] uppercase tracking-[0.2em] opacity-60 transition-opacity duration-300 hover:opacity-100"
+                onClick={() => onNavClick(l.href)}
+                className="k-caption text-[0.6875rem] uppercase tracking-[0.2em] opacity-80 transition-opacity duration-300 hover:opacity-100"
               >
                 {l.label}
               </Link>
@@ -87,7 +95,7 @@ export default function Navbar() {
               <li key={l.href}>
                 <Link
                   href={l.href}
-                  onClick={() => setOpen(false)}
+                  onClick={() => { onNavClick(l.href); setOpen(false) }}
                   className="k-caption block py-3 text-[0.75rem] uppercase tracking-[0.2em] opacity-70"
                 >
                   {l.label}

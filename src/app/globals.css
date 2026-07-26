@@ -40,6 +40,10 @@
   --color-k-surface-inverse: var(--color-k-graphite);
   --color-k-ink: var(--color-k-graphite);
   --color-k-ink-muted: var(--color-k-gray-mid);
+  /* Tinta atenuada legible (WCAG AA ≈4.7:1 sobre blanco cálido). Para TEXTO
+   * informativo atenuado que antes usaba gray-mid u opacity baja. No sustituye
+   * a gray-mid como primitiva de paleta (que sigue igual para uso no-texto). */
+  --color-k-ink-muted-aa: #6B6967;
   --color-k-ink-inverse: var(--color-k-white);
   --color-k-border: var(--color-k-gray-light);
   --color-k-border-strong: var(--color-k-gray-mid);
@@ -146,6 +150,25 @@ body {
 
 * {
   box-sizing: border-box;
+}
+
+/* Skip link — oculto hasta recibir foco por teclado. */
+.skip-link {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  transform: translateY(-120%);
+  padding: 0.75rem 1.25rem;
+  background: var(--color-k-graphite);
+  color: var(--color-k-white);
+  font-size: 0.8125rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: transform var(--k-motion-duration-ui, 200ms) var(--k-motion-ease, ease);
+}
+.skip-link:focus {
+  transform: translateY(0);
 }
 
 /* Eyebrow label style */

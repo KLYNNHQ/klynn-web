@@ -99,7 +99,7 @@ export function Eyebrow({
 }) {
   return (
     <p
-      className={`k-caption uppercase tracking-[0.24em] text-[var(--color-k-gray-mid)] ${className}`}
+      className={`k-caption uppercase tracking-[0.24em] text-[var(--color-k-ink-muted-aa)] ${className}`}
     >
       {children}
     </p>

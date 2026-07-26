@@ -28,7 +28,7 @@ export default function Apertura() {
             className="h-[7px] w-[7px]"
             style={{ background: 'var(--color-k-terracotta)' }}
           />
-          <span className="k-caption uppercase tracking-[0.28em] text-[var(--color-k-graphite)] opacity-60">
+          <span className="k-caption uppercase tracking-[0.28em] text-[var(--color-k-ink-muted-aa)]">
             KLYNN
           </span>
         </Reveal>

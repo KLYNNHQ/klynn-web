@@ -15,7 +15,7 @@ export default function Error({
   }, [error])
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-[var(--color-k-graphite)] px-6">
+    <main id="contenido" tabIndex={-1} className="flex min-h-screen items-center justify-center bg-[var(--color-k-graphite)] px-6">
       <div className="max-w-lg text-center text-[var(--color-k-white)]">
         <p className="k-caption mb-4 uppercase tracking-[0.24em] opacity-50">Error</p>
         <h1 className="k-h2 mb-4 text-[clamp(1.75rem,4vw,2.6875rem)] leading-[1.1]">

@@ -29,10 +29,21 @@ export interface RateLimitResult {
 }
 
 export async function checkRateLimit(ip: string): Promise<RateLimitResult | null> {
+  // Sin configuración → sin límite (skip). No se registra la IP (dato personal).
   if (!ratelimit) {
-    console.warn('[rate-limit] Redis not configured — skipping rate limit for', ip)
+    console.warn('[rate-limit] Redis not configured — skipping rate limit')
     return null
   }
-  const { success, limit, remaining, reset } = await ratelimit.limit(ip)
-  return { success, limit, remaining, reset }
+  try {
+    const { success, limit, remaining, reset } = await ratelimit.limit(ip)
+    return { success, limit, remaining, reset }
+  } catch (err) {
+    // FAIL-OPEN: si el servicio de rate-limit no responde, NO bloqueamos el
+    // envío. Se registra solo el tipo de error — nunca tokens, URLs, host ni IP.
+    console.warn(
+      '[rate-limit] service unavailable — allowing request (fail-open):',
+      err instanceof Error ? err.name : 'unknown',
+    )
+    return null
+  }
 }

@@ -1,39 +1,39 @@
 import Navbar from '@/components/klynn/Navbar'
-import Apertura from '@/components/klynn/Apertura'
 import Hero from '@/components/klynn/Hero'
-import Filosofia from '@/components/klynn/Filosofia'
+import Problema from '@/components/klynn/Problema'
+import Respuesta from '@/components/klynn/Respuesta'
+import Proceso from '@/components/klynn/Proceso'
+import TresFormas from '@/components/klynn/TresFormas'
+import Estandar from '@/components/klynn/Estandar'
 import Ecosistema from '@/components/klynn/Ecosistema'
-import Materiales from '@/components/klynn/Materiales'
-import CTA from '@/components/klynn/CTA'
+import Contacto from '@/components/klynn/Contacto'
 import Footer from '@/components/klynn/Footer'
 
 /**
- * Home KLYNN — marca global, 100% en español.
+ * Home KLYNN — narrativa de decisión / confianza, 100% en español.
  *
- * Arquitectura aprobada:
- *   1. Apertura de marca      — qué es KLYNN
- *   2. Hero                   — el claim
- *   3. Filosofía              — un mismo criterio
- *   4. Ecosistema             — las 10 categorías, mismo peso
- *   5. Diseño / materiales    — cómo se decide un objeto KLYNN
- *   6. CTA                    — acción institucional
- *   7. Footer
+ * Arco: problema (demasiadas opciones) → respuesta (una elección confiable) →
+ * cómo decide (proceso) → tres formas de actuar → el estándar → el universo de
+ * categorías → visión y contacto. Vende el criterio, no un catálogo.
  *
- * No vende productos ni catálogo: vende la marca. Ritmo de tono
- * claro/oscuro/claro para que la lectura respire.
+ * Componentes de fases anteriores no usados en esta narrativa (Apertura,
+ * Filosofia, Materiales, CTA) permanecen en el repo para posible reuso; no se
+ * eliminan en este incremento.
  */
 
 export default function Home() {
   return (
     <>
       <Navbar />
-      <main>
-        <Apertura />
+      <main id="contenido" tabIndex={-1}>
         <Hero />
-        <Filosofia />
+        <Problema />
+        <Respuesta />
+        <Proceso />
+        <TresFormas />
+        <Estandar />
         <Ecosistema />
-        <Materiales />
-        <CTA />
+        <Contacto />
       </main>
       <Footer />
     </>

@@ -4,9 +4,9 @@ import Navbar from '@/components/klynn/Navbar'
 import Footer from '@/components/klynn/Footer'
 
 export const metadata: Metadata = {
-  title: 'Términos de Uso — Grupo KLYNN S.A. de C.V.',
+  title: 'Términos de Uso — KLYNN',
   description:
-    'Términos y condiciones de uso del sitio web klynn.com.mx, operado por Grupo KLYNN S.A. de C.V. (titular de la marca KLYNN).',
+    'Términos y condiciones de uso del sitio web klynn.com.mx, operado por KLYNN (titular de la marca KLYNN).',
   robots: { index: true, follow: true },
 }
 
@@ -15,7 +15,7 @@ export default function TerminosDeUso() {
     <>
       <Navbar />
 
-      <main className="bg-white min-h-screen">
+      <main id="contenido" tabIndex={-1} className="bg-white min-h-screen">
         {/* Header */}
         <div className="bg-[#282625] text-white pt-32 pb-14 px-6">
           <div className="max-w-3xl mx-auto">
@@ -43,7 +43,7 @@ export default function TerminosDeUso() {
             </h2>
             <p className="text-sm font-normal leading-relaxed text-ink-legal">
               Al acceder y utilizar este sitio web operado por{' '}
-              <strong className="font-semibold text-[#282625]">Grupo KLYNN S.A. de C.V.</strong>,
+              <strong className="font-semibold text-[#282625]">KLYNN</strong>,
               usted acepta quedar vinculado por los presentes Términos de Uso. Si no está de
               acuerdo con alguna de estas condiciones, le pedimos abstenerse de utilizar el sitio.
             </p>
@@ -70,13 +70,13 @@ export default function TerminosDeUso() {
             <p className="text-sm font-normal leading-relaxed text-ink-legal mb-3">
               Todos los contenidos de este sitio —incluyendo textos, imágenes, diseños,
               íconos y código fuente— son propiedad de{' '}
-              <strong className="font-semibold">Grupo KLYNN S.A. de C.V.</strong>{' '}
+              <strong className="font-semibold">KLYNN</strong>{' '}
               o de sus licenciantes, y están protegidos por la Ley Federal del Derecho
               de Autor y demás legislación aplicable en México.
             </p>
             <p className="text-sm font-normal leading-relaxed text-ink-legal mb-3">
               <strong className="font-semibold">KLYNN</strong> y sus signos distintivos son
-              marcas de Grupo KLYNN S.A. de C.V. Cualquier uso no autorizado constituye una
+              marcas de KLYNN Cualquier uso no autorizado constituye una
               violación a la Ley Federal de Protección a la Propiedad Industrial.
               {/* PENDIENTE: precisar el estatus de registro ante el IMPI cuando exista
                   el trámite a nombre de la entidad definitiva. No se afirma un registro
@@ -85,7 +85,7 @@ export default function TerminosDeUso() {
             <p className="text-sm font-normal leading-relaxed text-ink-legal">
               Queda estrictamente prohibida la reproducción, distribución, modificación o
               uso comercial de cualquier contenido, marca o signo distintivo sin
-              autorización previa y por escrito de Grupo KLYNN S.A. de C.V.
+              autorización previa y por escrito de KLYNN
             </p>
           </section>
 
@@ -115,7 +115,7 @@ export default function TerminosDeUso() {
             <p className="text-sm font-normal leading-relaxed text-ink-legal">
               El envío de un formulario de contacto o cotización a través de este sitio no
               constituye la aceptación de un pedido ni la celebración de un contrato.
-              Grupo KLYNN S.A. de C.V. se reserva el derecho de aceptar o rechazar cualquier
+              KLYNN se reserva el derecho de aceptar o rechazar cualquier
               solicitud comercial. Las propuestas enviadas por nuestro equipo tendrán validez
               según los términos indicados en cada cotización formal.
             </p>
@@ -127,7 +127,7 @@ export default function TerminosDeUso() {
               6. Limitación de responsabilidad
             </h2>
             <p className="text-sm font-normal leading-relaxed text-ink-legal mb-3">
-              Grupo KLYNN S.A. de C.V. no será responsable por:
+              KLYNN no será responsable por:
             </p>
             <ul className="list-disc list-inside text-sm font-normal text-ink-legal space-y-1.5 leading-relaxed ml-1">
               <li>Daños derivados del uso o imposibilidad de uso del sitio.</li>
@@ -148,7 +148,7 @@ export default function TerminosDeUso() {
             </h2>
             <p className="text-sm font-normal leading-relaxed text-ink-legal">
               Este sitio puede contener enlaces a plataformas de terceros (MercadoLibre,
-              Amazon, redes sociales). Grupo KLYNN S.A. de C.V. no controla ni se responsabiliza
+              Amazon, redes sociales). KLYNN no controla ni se responsabiliza
               por el contenido, políticas de privacidad o prácticas de dichos sitios. El acceso
               a estos enlaces es bajo responsabilidad del usuario.
             </p>
@@ -175,7 +175,7 @@ export default function TerminosDeUso() {
               9. Modificaciones
             </h2>
             <p className="text-sm font-normal leading-relaxed text-ink-legal">
-              Grupo KLYNN S.A. de C.V. se reserva el derecho de modificar estos Términos de
+              KLYNN se reserva el derecho de modificar estos Términos de
               Uso en cualquier momento. Los cambios entrarán en vigor en el momento de su
               publicación en este sitio. El uso continuado del sitio después de publicarse
               las modificaciones implica la aceptación de los nuevos términos.

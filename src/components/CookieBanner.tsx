@@ -44,7 +44,7 @@ export default function CookieBanner() {
             Cookies técnicas y de análisis.{' '}
             <Link
               href="/aviso-de-privacidad#cookies"
-              className="text-[var(--color-k-terracotta)] hover:underline font-medium whitespace-nowrap"
+              className="text-[var(--color-k-white)] underline font-medium whitespace-nowrap"
             >
               Aviso de Privacidad
             </Link>
@@ -55,7 +55,7 @@ export default function CookieBanner() {
             Consulta nuestro{' '}
             <Link
               href="/aviso-de-privacidad#cookies"
-              className="text-[var(--color-k-terracotta)] hover:underline font-medium whitespace-nowrap"
+              className="text-[var(--color-k-white)] underline font-medium whitespace-nowrap"
             >
               Aviso de Privacidad
             </Link>

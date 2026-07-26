@@ -4,9 +4,9 @@ import Navbar from '@/components/klynn/Navbar'
 import Footer from '@/components/klynn/Footer'
 
 export const metadata: Metadata = {
-  title: 'Aviso de Privacidad — Grupo KLYNN S.A. de C.V.',
+  title: 'Aviso de Privacidad — KLYNN',
   description:
-    'Aviso de Privacidad de Grupo KLYNN S.A. de C.V. conforme a la Ley Federal de Protección de Datos Personales en Posesión de los Particulares.',
+    'Aviso de Privacidad de KLYNN conforme a la Ley Federal de Protección de Datos Personales en Posesión de los Particulares.',
   robots: { index: true, follow: true },
 }
 
@@ -15,7 +15,7 @@ export default function AvisoDePrivacidad() {
     <>
       <Navbar />
 
-      <main className="bg-white min-h-screen">
+      <main id="contenido" tabIndex={-1} className="bg-white min-h-screen">
         {/* Header */}
         <div className="bg-[#282625] text-white pt-32 pb-14 px-6">
           <div className="max-w-3xl mx-auto">
@@ -42,7 +42,7 @@ export default function AvisoDePrivacidad() {
               I. Identidad y domicilio del Responsable
             </h2>
             <p className="text-sm font-normal leading-relaxed text-ink-legal mb-4">
-              <strong className="font-semibold text-[#282625]">Grupo KLYNN S.A. de C.V.</strong>{' '}
+              <strong className="font-semibold text-[#282625]">KLYNN</strong>{' '}
               (en adelante, <em>&ldquo;el Responsable&rdquo;</em>) es el responsable del tratamiento
               de sus datos personales.
             </p>

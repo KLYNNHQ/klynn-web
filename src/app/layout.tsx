@@ -74,6 +74,7 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
+  manifest: '/manifest.json',
 }
 
 /**
@@ -90,12 +91,19 @@ const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
   name: 'KLYNN',
-  legalName: 'Grupo KLYNN, S.A. de C.V.',
   url: siteUrl,
   brand: {
     '@type': 'Brand',
     name: 'KLYNN',
   },
+}
+
+const webSiteLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'KLYNN',
+  url: siteUrl,
+  inLanguage: 'es',
 }
 
 export default function RootLayout({
@@ -109,9 +117,14 @@ export default function RootLayout({
       className={`${interTight.variable} ${inter.variable}`}
     >
       <body className="font-sans antialiased">
+        <a href="#contenido" className="skip-link">Saltar al contenido</a>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteLd) }}
         />
         {children}
         <CookieBanner />

@@ -14,7 +14,7 @@ export default function NotFound() {
   return (
     <>
       <Navbar />
-      <main className="flex min-h-[100svh] items-center bg-[var(--color-k-white)] text-[var(--color-k-graphite)]">
+      <main id="contenido" tabIndex={-1} className="flex min-h-[100svh] items-center bg-[var(--color-k-white)] text-[var(--color-k-graphite)]">
         <Container>
           <div className="py-40">
             <p className="k-caption uppercase tracking-[0.24em] opacity-50">Error 404</p>

@@ -19,7 +19,9 @@ export const brand = {
    * sociedad no está constituida, el dato debe corregirse antes de que el
    * sitio sea público.
    */
-  legalName: 'Grupo KLYNN, S.A. de C.V.', // temporal — pendiente de constitución
+  // Provisional: NO se muestra una entidad legal no constituida al público.
+  // Se usa "KLYNN" hasta confirmar la razón social real. [DATO PENDIENTE — no público]
+  legalName: 'KLYNN',
   /**
    * Nombre de tecnología de marca. Sin definir: cualquier tecnología heredada
    * quedó fuera de la superficie pública. Se poblará cuando exista una propia

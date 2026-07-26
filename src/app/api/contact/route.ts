@@ -32,6 +32,9 @@ interface LeadPayload {
 
 // ─── Constantes de validación ─────────────────────────────────────────────────
 const CANAL_WHITELIST = new Set([
+  // Audiencias KLYNN del sitio corporativo.
+  'consumidor', 'inversionista', 'proveedor', 'socio', 'prensa',
+  // Compatibilidad con canales previos.
   'distribuidor', 'horeca', 'retail', 'institucional', 'hogar', 'otro',
 ])
 
@@ -84,6 +87,11 @@ function validatePayload(body: LeadPayload): string | null {
 
 // ─── Labels para el correo ───────────────────────────────────────────────────
 const CANAL_LABELS: Record<string, string> = {
+  consumidor:    'Consumidor',
+  inversionista: 'Inversionista',
+  proveedor:     'Fabricante / Proveedor',
+  socio:         'Socio comercial',
+  prensa:        'Prensa / Colaboración',
   distribuidor:  'Distribuidor',
   horeca:        'HORECA (Hotel / Restaurant / Cafetería)',
   retail:        'Retail / Tienda',
